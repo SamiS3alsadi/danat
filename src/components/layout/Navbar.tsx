@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, locale, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,18 +19,19 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Fleet", href: "/fleet" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "About", href: "/about" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    { name: t.nav.home, href: "/" },
+    { name: t.nav.fleet, href: "/fleet" },
+    { name: t.nav.pricing, href: "/pricing" },
+    { name: t.nav.about, href: "/about" },
+    { name: t.nav.faq, href: "/faq" },
+    { name: t.nav.contact, href: "/contact" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md py-4 shadow-lg border-b border-white/5" : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/90 backdrop-blur-md py-4 shadow-lg" : "bg-transparent py-6"
+      }`}
       style={{
         borderBottom: isScrolled ? "1px solid var(--border-subtle)" : "none",
         backgroundColor: isScrolled ? "rgba(5, 5, 5, 0.9)" : "transparent",
@@ -36,10 +39,10 @@ const Navbar = () => {
         WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
       }}
     >
-      <div className="container flex items-center justify-between" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="container flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/logo.png"
+            src="/images/danataldonia_logo.png"
             alt="Danat Aldonia"
             width={50}
             height={50}
@@ -63,55 +66,96 @@ const Navbar = () => {
               textTransform: 'uppercase',
               lineHeight: 1.5
             }}>
-              Economy to Luxury
+              {t.footer.tagline}
             </span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8" style={{ display: 'flex', gap: '32px' }}>
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium uppercase tracking-wider hover:text-gold transition-colors"
               style={{
                 fontSize: '13px',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
-                color: 'var(--text-primary)'
+                color: 'var(--text-primary)',
+                textTransform: 'uppercase',
               }}
+              className="hover:text-gold transition-colors"
             >
               {link.name}
             </Link>
           ))}
-          <a href="tel:+971529007996" className="btn btn-primary px-6 py-2 text-xs" style={{ padding: '10px 24px', fontSize: '12px' }}>
-            Call Now
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            style={{
+              fontSize: '12px',
+              fontWeight: 700,
+              color: 'var(--accent-gold)',
+              background: 'none',
+              border: '1px solid var(--border-medium)',
+              borderRadius: '999px',
+              padding: '6px 14px',
+              cursor: 'pointer',
+              letterSpacing: '0.05em',
+              transition: 'var(--transition-fast)',
+            }}
+            className="hover:bg-gold/10 transition-colors"
+            aria-label="Toggle language"
+          >
+            {locale === "en" ? "العربية" : "English"}
+          </button>
+
+          <a href="tel:+971529007996" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '12px' }}>
+            {t.nav.callNow}
           </a>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isMobileMenuOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          )}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={toggleLanguage}
+            style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              color: 'var(--accent-gold)',
+              background: 'none',
+              border: '1px solid var(--border-medium)',
+              borderRadius: '999px',
+              padding: '5px 10px',
+              cursor: 'pointer',
+            }}
+            aria-label="Toggle language"
+          >
+            {locale === "en" ? "ع" : "EN"}
+          </button>
+          <button
+            className="text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMobileMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu (simplified for now) */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 py-8 flex flex-col items-center gap-6 md:hidden">
           {navLinks.map((link) => (
@@ -124,6 +168,9 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          <a href="tel:+971529007996" className="btn btn-primary mt-2" style={{ padding: '12px 32px', fontSize: '13px' }}>
+            {t.nav.callNow}
+          </a>
         </div>
       )}
     </nav>

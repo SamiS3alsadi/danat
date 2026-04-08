@@ -10,7 +10,7 @@ const WhatsAppButton = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-8 right-8 z-[60] flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95"
+            className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-[60] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95"
             style={{
                 boxShadow: '0 8px 32px rgba(37, 211, 102, 0.3)',
             }}

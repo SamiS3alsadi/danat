@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/common/WhatsAppButton";
 import StickyMobileBar from "@/components/common/StickyMobileBar";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Premium Car Rental Dubai | Danat Aldonia Rent a Car",
@@ -17,15 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <Navbar />
-        <main style={{ flex: 1, paddingTop: 'var(--header-height)' }}>
-          {children}
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <StickyMobileBar />
+        <LanguageProvider>
+          <Navbar />
+          <main style={{ flex: 1, paddingTop: 'var(--header-height)' }}>
+            {children}
+          </main>
+          <Footer />
+          <StickyMobileBar />
+        </LanguageProvider>
       </body>
     </html>
   );
