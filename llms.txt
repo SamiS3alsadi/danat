@@ -1,0 +1,22 @@
+# Danat Aldonia Rent a Car – Dubai
+
+> Cheap car rental in Dubai with the best prices on the market. Economy from AED 60/day, SUVs from AED 150/day, luxury from AED 500/day. No hidden fees, no deposit options, insurance included. 60-minute delivery across all of Dubai and the UAE.
+
+## Pages
+
+- [Home](https://danataldonia.com): Overview of Danat Aldonia car rental services in Dubai — cheapest prices in the market, fleet categories, delivery, and booking.
+- [Economy Cars](https://danataldonia.com/economy): Budget-friendly daily and monthly economy car rentals starting from AED 60/day.
+- [Sedan Cars](https://danataldonia.com/sedan): Comfortable sedan rentals for tourists, residents, and business travelers in Dubai.
+- [SUV Rentals](https://danataldonia.com/suv): Premium SUV hire including Nissan Patrol V8 from AED 800/day and more.
+- [Van & 7-Seater Rentals](https://danataldonia.com/van): Group and family van rentals including Mercedes V-Class from AED 1,200/day.
+- [Luxury Car Rentals](https://danataldonia.com/luxury): Luxury fleet including Rolls-Royce Cullinan from AED 4,500/day.
+- [Supercar Rentals](https://danataldonia.com/supercar): Exotic supercars including Lamborghini Huracan EVO from AED 3,500/day.
+- [Monthly Car Rental](https://danataldonia.com/monthly): Long-term monthly rental plans with flexible terms and discounted rates.
+- [Airport Delivery – DXB](https://danataldonia.com/airport): Car delivery to Dubai International Airport within 60 minutes.
+- [Corporate Rental](https://danataldonia.com/corporate): Fleet solutions for businesses and companies operating in the UAE.
+- [FAQ](https://danataldonia.com/faq): Answers to common questions about rental requirements, insurance, deposits, and payment.
+- [Contact](https://danataldonia.com/contact): Reach Danat Aldonia via phone, WhatsApp, email, or visit our Dubai Marina office.
+
+## Optional
+
+- [llms-full.txt](https://danataldonia.com/llms-full.txt): Full plain-text content of the Danat Aldonia website for AI ingestion.
