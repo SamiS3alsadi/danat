@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/config/site";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -111,7 +112,7 @@ const Navbar = () => {
             {locale === "en" ? "العربية" : "English"}
           </button>
 
-          <a href="tel:+971529007996" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '12px' }}>
+          <a href={siteConfig.tel} className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '12px' }}>
             {t.nav.callNow}
           </a>
         </div>
@@ -127,8 +128,13 @@ const Navbar = () => {
               background: 'none',
               border: '1px solid var(--border-medium)',
               borderRadius: '999px',
-              padding: '5px 10px',
+              padding: '10px 16px',
               cursor: 'pointer',
+              minWidth: '44px',
+              minHeight: '44px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
             aria-label="Toggle language"
           >
@@ -168,7 +174,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <a href="tel:+971529007996" className="btn btn-primary mt-2" style={{ padding: '12px 32px', fontSize: '13px' }}>
+          <a href={siteConfig.tel} className="btn btn-primary mt-2" style={{ padding: '12px 32px', fontSize: '13px' }}>
             {t.nav.callNow}
           </a>
         </div>

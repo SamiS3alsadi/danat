@@ -5,29 +5,86 @@ const HowItWorks = () => {
     const { t } = useLanguage();
 
     return (
-        <section style={{ backgroundColor: 'var(--surface-secondary)', padding: '96px 0' }}>
+        <section style={{ backgroundColor: 'var(--surface-secondary)', padding: '120px 0' }}>
             <div className="container">
-                <div style={{ textAlign: 'center', marginBottom: '64px', maxWidth: '672px', margin: '0 auto 64px' }}>
-                    <span style={{ color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.1em', fontSize: '12px', display: 'block', marginBottom: '16px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '96px', maxWidth: '720px', margin: '0 auto 96px' }}>
+                    <span className="eyebrow" style={{ marginBottom: '24px' }}>
                         {t.howItWorks.eyebrow}
                     </span>
-                    <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: '#fff' }}>
-                        {t.howItWorks.title} <span style={{ color: 'var(--accent-gold)' }}>{t.howItWorks.titleHighlight}</span>
+                    <h2
+                        className="display-serif"
+                        style={{
+                            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+                            color: '#fff',
+                            fontWeight: 400,
+                            lineHeight: 1.05,
+                            marginTop: '20px',
+                        }}
+                    >
+                        {t.howItWorks.title}{' '}
+                        <span className="display-serif-italic" style={{ color: 'var(--accent-gold)' }}>
+                            {t.howItWorks.titleHighlight}
+                        </span>
                     </h2>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                    gap: '40px',
+                }}>
                     {t.howItWorks.steps.map((step, index) => (
-                        <div key={index} className="card" style={{ position: 'relative', padding: '32px', borderRadius: '14px', backgroundColor: 'rgba(0, 0, 0, 0.4)', border: '1px solid rgba(255, 255, 255, 0.05)', transition: 'all 0.4s ease' }}>
-                            <span style={{ fontSize: '48px', fontWeight: 900, color: 'rgba(255, 255, 255, 0.05)', position: 'absolute', top: '16px', right: '16px' }}>
-                                {String(index + 1).padStart(2, '0')}
+                        <div
+                            key={index}
+                            style={{
+                                position: 'relative',
+                                padding: '48px 32px 32px',
+                                minHeight: '280px',
+                                borderTop: '1px solid var(--border-subtle)',
+                                overflow: 'hidden',
+                            }}
+                        >
+                            <span
+                                className="editorial-number"
+                                aria-hidden="true"
+                                style={{
+                                    position: 'absolute',
+                                    top: '-12px',
+                                    insetInlineEnd: '-8px',
+                                    zIndex: 0,
+                                }}
+                            >
+                                {String(index + 1).padStart(2, '0')}.
                             </span>
-                            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '16px', position: 'relative', zIndex: 10 }}>
-                                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--accent-gold)', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '18px' }}>
-                                    {index + 1}
-                                </div>
-                                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff' }}>{step.title}</h3>
-                                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{step.desc}</p>
+                            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                                <span style={{
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: 'var(--accent-gold)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.25em',
+                                }}>
+                                    Step {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <h3
+                                    className="display-serif"
+                                    style={{
+                                        fontSize: '28px',
+                                        fontWeight: 400,
+                                        color: '#fff',
+                                        lineHeight: 1.15,
+                                    }}
+                                >
+                                    {step.title}
+                                </h3>
+                                <p style={{
+                                    fontSize: '14px',
+                                    color: 'var(--text-secondary)',
+                                    lineHeight: 1.7,
+                                    maxWidth: '320px',
+                                }}>
+                                    {step.desc}
+                                </p>
                             </div>
                         </div>
                     ))}

@@ -7,12 +7,12 @@ const Reviews = () => {
     return (
         <section style={{ backgroundColor: 'var(--surface-secondary)', padding: '96px 0' }}>
             <div className="container">
-                <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-                    <span style={{ color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.1em', fontSize: '12px', display: 'block', marginBottom: '16px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '72px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+                    <span className="eyebrow">
                         {t.reviews.eyebrow}
                     </span>
-                    <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: '#fff' }}>
-                        {t.reviews.title} <span style={{ color: 'var(--accent-gold)' }}>{t.reviews.titleHighlight}</span>
+                    <h2 className="display-serif" style={{ fontSize: 'clamp(2.25rem, 5.5vw, 3.5rem)', fontWeight: 400, color: '#fff', lineHeight: 1.05 }}>
+                        {t.reviews.title} <span className="display-serif-italic" style={{ color: 'var(--accent-gold)' }}>{t.reviews.titleHighlight}</span>
                     </h2>
                 </div>
 

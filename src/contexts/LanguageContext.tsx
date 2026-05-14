@@ -23,6 +23,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   useEffect(() => {
     const saved = localStorage.getItem("locale") as Locale | null;
     if (saved === "ar" || saved === "en") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLocale(saved);
     }
   }, []);

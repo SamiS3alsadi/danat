@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Hero from "@/components/home/Hero";
 import TrustBar from "@/components/home/TrustBar";
+import TrustBadges from "@/components/home/TrustBadges";
 import FeaturedFleet from "@/components/home/FeaturedFleet";
 import HowItWorks from "@/components/home/HowItWorks";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
@@ -14,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <TrustBar />
+      <TrustBadges />
       <FleetSegments />
       <FeaturedFleet />
       <HowItWorks />

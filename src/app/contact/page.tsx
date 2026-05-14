@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/config/site";
 
 const contactSchema = {
     "@context": "https://schema.org",
@@ -78,8 +79,8 @@ export default function ContactPage() {
                                         <h3 style={{ color: 'var(--accent-gold)', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '12px' }}>
                                             {t.contact.phoneLabel}
                                         </h3>
-                                        <a href="tel:+971529007996" style={{ fontSize: '18px', fontWeight: 700, color: '#fff', display: 'block', textDecoration: 'none' }}>+971 52 900 7996</a>
-                                        <a href="https://wa.me/971529007996" style={{ fontSize: '14px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                                        <a href={siteConfig.tel} style={{ fontSize: '18px', fontWeight: 700, color: '#fff', display: 'block', textDecoration: 'none' }}>{siteConfig.phoneDisplay}</a>
+                                        <a href={siteConfig.whatsappBase} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
                                             {t.contact.chatWhatsApp}
                                         </a>
                                     </div>
@@ -120,7 +121,7 @@ export default function ContactPage() {
                                 ></iframe>
                             </div>
                             <a
-                                href="https://maps.app.goo.gl/..."
+                                href="https://www.google.com/maps/search/?api=1&query=Hor+Al+Anz+East+Dubai"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-secondary"

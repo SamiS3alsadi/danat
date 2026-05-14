@@ -1,15 +1,24 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import CarCard from "@/components/common/CarCard";
 import fleetData from "@/data/fleet.json";
 import { Car } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/config/site";
 
 const FleetPage = () => {
     const { t } = useLanguage();
     const cars = fleetData as Car[];
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchInput, setSearchInput] = useState("");
+    const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleSearchChange = useCallback((value: string) => {
+        setSearchInput(value);
+        if (debounceTimer.current) clearTimeout(debounceTimer.current);
+        debounceTimer.current = setTimeout(() => setSearchQuery(value), 300);
+    }, []);
     const [filterSegment, setFilterSegment] = useState<string>("All");
     const [filterType, setFilterType] = useState<string>("All");
     const [filterSeats, setFilterSeats] = useState<string>("All");
@@ -19,7 +28,10 @@ const FleetPage = () => {
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const segment = params.get("segment");
-        if (segment) setFilterSegment(segment);
+        if (segment) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setFilterSegment(segment);
+        }
     }, []);
 
     const segments = ["All", "Economy", "Mid-Range", "Premium", "Luxury", "Supercar"];
@@ -34,7 +46,7 @@ const FleetPage = () => {
     ];
 
     const filteredAndSortedCars = useMemo(() => {
-        let result = cars.filter(car => {
+        const result = cars.filter(car => {
             const searchMatch = searchQuery === "" ||
                 car.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 car.brand.toLowerCase().includes(searchQuery.toLowerCase());
@@ -92,23 +104,25 @@ const FleetPage = () => {
                         {/* Filters */}
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', flex: 1 }}>
                             <div style={{ flex: 1, minWidth: '200px' }}>
-                                <label style={{ fontSize: '10px', color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                                <label htmlFor="fleet-search" style={{ fontSize: '10px', color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
                                     {t.fleetPage.searchLabel}
                                 </label>
                                 <input
+                                    id="fleet-search"
                                     type="text"
                                     placeholder={t.fleetPage.searchPlaceholder}
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', width: '100%', outline: 'none' }}
+                                    value={searchInput}
+                                    onChange={(e) => handleSearchChange(e.target.value)}
+                                    style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', width: '100%' }}
                                 />
                             </div>
 
                             <div>
-                                <label style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                                <label htmlFor="fleet-segment" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
                                     {t.fleetPage.segmentLabel}
                                 </label>
                                 <select
+                                    id="fleet-segment"
                                     value={filterSegment}
                                     onChange={(e) => setFilterSegment(e.target.value)}
                                     style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer' }}
@@ -119,10 +133,11 @@ const FleetPage = () => {
                             </div>
 
                             <div>
-                                <label style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                                <label htmlFor="fleet-type" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
                                     {t.fleetPage.typeLabel}
                                 </label>
                                 <select
+                                    id="fleet-type"
                                     value={filterType}
                                     onChange={(e) => setFilterType(e.target.value)}
                                     style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer' }}
@@ -133,10 +148,11 @@ const FleetPage = () => {
                             </div>
 
                             <div>
-                                <label style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                                <label htmlFor="fleet-seats" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
                                     {t.fleetPage.seatsLabel}
                                 </label>
                                 <select
+                                    id="fleet-seats"
                                     value={filterSeats}
                                     onChange={(e) => setFilterSeats(e.target.value)}
                                     style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer' }}
@@ -152,10 +168,11 @@ const FleetPage = () => {
 
                         {/* Sorting */}
                         <div style={{ marginLeft: 'auto' }}>
-                            <label style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                            <label htmlFor="fleet-sort" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
                                 {t.fleetPage.sortLabel}
                             </label>
                             <select
+                                id="fleet-sort"
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}
                                 style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer', minWidth: '150px' }}
@@ -180,11 +197,13 @@ const FleetPage = () => {
                         </div>
                     ) : (
                         <div style={{ textAlign: 'center', padding: '80px 0' }}>
-                            <span style={{ fontSize: '48px', display: 'block', marginBottom: '24px' }}>🔍</span>
+                            <svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', margin: '0 auto 24px' }}>
+                                <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
                             <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{t.fleetPage.noResults}</h2>
                             <p style={{ color: 'var(--text-secondary)' }}>{t.fleetPage.noResultsDesc}</p>
                             <button
-                                onClick={() => { setFilterType("All"); setFilterSeats("All"); setFilterSegment("All"); setSearchQuery(""); }}
+                                onClick={() => { setFilterType("All"); setFilterSeats("All"); setFilterSegment("All"); setSearchQuery(""); setSearchInput(""); }}
                                 style={{ marginTop: '32px', color: 'var(--accent-gold)', fontWeight: 700, cursor: 'pointer', background: 'none', border: 'none', fontSize: '14px' }}
                             >
                                 {t.fleetPage.clearFilters}
@@ -203,7 +222,7 @@ const FleetPage = () => {
                         </span>
                         <h2 style={{ fontSize: '24px', fontWeight: 900, color: '#fff', marginBottom: '24px' }}>{t.fleetPage.savingsTitle}</h2>
                         <p style={{ color: 'var(--text-secondary)', maxWidth: '576px', margin: '0 auto 32px' }}>{t.fleetPage.savingsDesc}</p>
-                        <a href="https://wa.me/+971529007996?text=Hi, I'm interested in monthly rental deals." className="btn btn-primary">
+                        <a href={siteConfig.whatsappMessage("Hi, I'm interested in monthly rental deals.")} className="btn btn-primary">
                             {t.fleetPage.inquireMonthly}
                         </a>
                     </div>

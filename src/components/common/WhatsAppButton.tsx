@@ -1,9 +1,9 @@
 "use client";
 
+import { siteConfig } from "@/config/site";
+
 const WhatsAppButton = () => {
-    const phoneNumber = "+971529007996"; // Placeholder, will ask user later
-    const message = "Hi, I'm interested in renting a luxury car in Dubai.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = siteConfig.whatsappMessage("Hi, I'm interested in renting a luxury car in Dubai.");
 
     return (
         <a

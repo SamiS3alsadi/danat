@@ -1,35 +1,84 @@
 "use client";
 import Link from "next/link";
+import { useRef } from "react";
 import CarCard from "@/components/common/CarCard";
 import fleet from "@/data/fleet.json";
 import { Car } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeaturedFleet = () => {
-    const { t } = useLanguage();
+    const { t, isRTL } = useLanguage();
     const featuredCars = (fleet as Car[]).filter(car => car.isFeatured).slice(0, 6);
+    const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+    const scrollByCard = (direction: 1 | -1) => {
+        const el = scrollerRef.current;
+        if (!el) return;
+        const child = el.firstElementChild as HTMLElement | null;
+        const delta = (child?.getBoundingClientRect().width ?? 360) + 24;
+        el.scrollBy({ left: delta * direction, behavior: 'smooth' });
+    };
 
     return (
-        <section style={{ paddingTop: '96px', paddingBottom: '96px', backgroundColor: '#000' }}>
+        <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000' }}>
             <div className="container">
-                <div style={{ display: 'flex', flexWrap: 'wrap' as const, justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px', gap: '32px' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '16px' }}>
-                        <span style={{ color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.1em', fontSize: '12px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', gap: '32px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '620px' }}>
+                        <span className="eyebrow">
                             {t.fleet.eyebrow}
                         </span>
-                        <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: '#fff' }}>
-                            {t.fleet.title} <span style={{ color: 'var(--accent-gold)' }}>{t.fleet.titleHighlight}</span>
+                        <h2
+                            className="display-serif"
+                            style={{
+                                fontSize: 'clamp(2.25rem, 5.5vw, 3.75rem)',
+                                color: '#fff',
+                                fontWeight: 400,
+                                lineHeight: 1.05,
+                            }}
+                        >
+                            {t.fleet.title}{' '}
+                            <span className="display-serif-italic" style={{ color: 'var(--accent-gold)' }}>
+                                {t.fleet.titleHighlight}
+                            </span>
                         </h2>
                     </div>
-                    <Link href="/fleet" className="btn btn-secondary" style={{ padding: '12px 32px', fontSize: '14px' }}>
-                        {t.fleet.viewFull}
-                    </Link>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <div className="hidden md:flex" style={{ gap: '10px' }}>
+                            <button
+                                type="button"
+                                aria-label="Scroll previous"
+                                className="scroller-chevron"
+                                onClick={() => scrollByCard(isRTL ? 1 : -1)}
+                            >
+                                <span aria-hidden="true">{isRTL ? '›' : '‹'}</span>
+                            </button>
+                            <button
+                                type="button"
+                                aria-label="Scroll next"
+                                className="scroller-chevron"
+                                onClick={() => scrollByCard(isRTL ? -1 : 1)}
+                            >
+                                <span aria-hidden="true">{isRTL ? '‹' : '›'}</span>
+                            </button>
+                        </div>
+                        <Link href="/fleet" className="btn btn-secondary" style={{ padding: '12px 28px', fontSize: '13px' }}>
+                            {t.fleet.viewFull}
+                        </Link>
+                    </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
-                    {featuredCars.map((car) => (
-                        <CarCard key={car.id} car={car} />
-                    ))}
+                <div className="fleet-scroller-wrap">
+                    <div
+                        ref={scrollerRef}
+                        className="fleet-scroller"
+                        tabIndex={0}
+                        role="region"
+                        aria-label={t.fleet.eyebrow}
+                    >
+                        {featuredCars.map((car) => (
+                            <CarCard key={car.id} car={car} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

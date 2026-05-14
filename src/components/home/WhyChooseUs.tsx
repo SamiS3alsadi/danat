@@ -27,7 +27,9 @@ const WhyChooseUs = () => {
                             {t.why.points.map((point, index) => (
                                 <div key={index} style={{ display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                        <span style={{ color: 'var(--accent-gold)', fontSize: '20px' }}>✓</span>
+                                        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                                            <path d="M4.5 12.75l6 6 9-13.5" />
+                                        </svg>
                                         <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>{point.title}</h3>
                                     </div>
                                     <p style={{ fontSize: '14px', color: 'var(--text-muted)', lineHeight: 1.6 }}>{point.desc}</p>
@@ -43,6 +45,7 @@ const WhyChooseUs = () => {
                                 src="/images/hero-car.png"
                                 alt="Danat Aldonia luxury car"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 style={{ objectFit: 'cover' }}
                             />
                             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.8) 0%, transparent 60%)', zIndex: 1 }}></div>
