@@ -13,11 +13,9 @@ const Footer = () => {
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '48px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <Image src="/images/danataldonia_logo.png" alt="Danat Aldonia" width={60} height={60} style={{ objectFit: 'contain' }} />
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800, fontSize: '24px', color: 'var(--accent-gold)', letterSpacing: '-0.02em', lineHeight: 1 }}>Danat Aldonia</span>
-                                <span style={{ fontSize: '11px', color: 'var(--text-secondary)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{t.footer.luxuryRental}</span>
+                        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                            <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '6px 12px', display: 'inline-flex', alignItems: 'center' }}>
+                                <Image src="/images/danataldonia_logo.png" alt="Danat Al Donia Car Rental" width={180} height={60} style={{ objectFit: 'contain', height: '48px', width: 'auto' }} />
                             </div>
                         </Link>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '300px' }}>{t.footer.desc}</p>

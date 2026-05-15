@@ -41,34 +41,17 @@ const Navbar = () => {
       }}
     >
       <div className="container flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/images/danataldonia_logo.png"
-            alt="Danat Aldonia"
-            width={50}
-            height={50}
-            className="object-contain"
-          />
-          <div className="flex flex-col">
-            <span style={{
-              fontFamily: 'Outfit, sans-serif',
-              fontWeight: 800,
-              fontSize: '20px',
-              color: 'var(--accent-gold)',
-              letterSpacing: '-0.02em',
-              lineHeight: 1
-            }}>
-              Danat Aldonia
-            </span>
-            <span style={{
-              fontSize: '10px',
-              color: 'var(--text-secondary)',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              lineHeight: 1.5
-            }}>
-              {t.footer.tagline}
-            </span>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '4px 10px', display: 'flex', alignItems: 'center' }}>
+            <Image
+              src="/images/danataldonia_logo.png"
+              alt="Danat Al Donia Car Rental"
+              width={150}
+              height={50}
+              className="object-contain"
+              style={{ height: '40px', width: 'auto' }}
+              priority
+            />
           </div>
         </Link>
 
