@@ -10,7 +10,7 @@ const contactSchema = {
     "image": "https://danataldonia.com/images/logo.png",
     "@id": "https://danataldonia.com",
     "url": "https://danataldonia.com",
-    "telephone": "+971529007996",
+    "telephone": "+971525944022",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "Hor Al Anz East, Deira",
@@ -34,7 +34,7 @@ const contactSchema = {
     ],
     "sameAs": [
         "https://www.instagram.com/danataldonia/",
-        "https://wa.me/971529007996"
+        "https://wa.me/971525944022"
     ]
 };
 
