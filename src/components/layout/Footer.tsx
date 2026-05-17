@@ -13,10 +13,9 @@ const Footer = () => {
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '48px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
-                            <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '6px 12px', display: 'inline-flex', alignItems: 'center' }}>
-                                <Image src="/images/danataldonia_logo.png" alt="Danat Al Donia Car Rental" width={180} height={60} style={{ objectFit: 'contain', height: '48px', width: 'auto' }} />
-                            </div>
+                        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
+                            <Image src="/images/logo-icon.png" alt="Danat Al Donia" width={56} height={56} style={{ objectFit: 'contain', height: '56px', width: '56px' }} />
+                            <Image src="/images/logo-text.png" alt="Danat Al Donia Car Rental" width={160} height={36} style={{ objectFit: 'contain', height: '36px', width: 'auto' }} />
                         </Link>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '300px' }}>{t.footer.desc}</p>
                     </div>

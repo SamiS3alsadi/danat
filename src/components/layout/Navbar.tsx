@@ -41,18 +41,25 @@ const Navbar = () => {
       }}
     >
       <div className="container flex items-center justify-between">
-        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '4px 10px', display: 'flex', alignItems: 'center' }}>
-            <Image
-              src="/images/danataldonia_logo.png"
-              alt="Danat Al Donia Car Rental"
-              width={150}
-              height={50}
-              className="object-contain"
-              style={{ height: '40px', width: 'auto' }}
-              priority
-            />
-          </div>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Image
+            src="/images/logo-icon.png"
+            alt="Danat Al Donia"
+            width={44}
+            height={44}
+            className="object-contain"
+            style={{ height: '44px', width: '44px' }}
+            priority
+          />
+          <Image
+            src="/images/logo-text.png"
+            alt="Danat Al Donia Car Rental"
+            width={140}
+            height={32}
+            className="object-contain"
+            style={{ height: '32px', width: 'auto' }}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
