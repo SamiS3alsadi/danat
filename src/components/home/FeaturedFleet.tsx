@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import CarCard from "@/components/common/CarCard";
 import fleet from "@/data/fleet.json";
 import { Car } from "@/data/types";
@@ -10,6 +10,17 @@ const FeaturedFleet = () => {
     const { t, isRTL } = useLanguage();
     const featuredCars = (fleet as Car[]).filter(car => car.isFeatured).slice(0, 6);
     const scrollerRef = useRef<HTMLDivElement | null>(null);
+    const wrapRef = useRef<HTMLDivElement | null>(null);
+
+    const handleScroll = useCallback(() => {
+        const el = scrollerRef.current;
+        const wrap = wrapRef.current;
+        if (!el || !wrap) return;
+        const scrolled = isRTL
+            ? el.scrollWidth - el.clientWidth + el.scrollLeft
+            : el.scrollLeft;
+        wrap.classList.toggle('can-scroll-left', scrolled > 16);
+    }, [isRTL]);
 
     const scrollByCard = (direction: 1 | -1) => {
         const el = scrollerRef.current;
@@ -67,13 +78,14 @@ const FeaturedFleet = () => {
                     </div>
                 </div>
 
-                <div className="fleet-scroller-wrap">
+                <div ref={wrapRef} className="fleet-scroller-wrap">
                     <div
                         ref={scrollerRef}
                         className="fleet-scroller"
                         tabIndex={0}
                         role="region"
                         aria-label={t.fleet.eyebrow}
+                        onScroll={handleScroll}
                     >
                         {featuredCars.map((car) => (
                             <CarCard key={car.id} car={car} />
