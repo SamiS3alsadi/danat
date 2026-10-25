@@ -1,0 +1,27 @@
+# Danat Aldonia Rent a Car – Dubai
+
+> Danat Aldonia rents every category from economy to supercars, with the same service standard: delivery across Dubai, no hidden fees, insurance included, WhatsApp booking.
+
+## Pages
+
+- [Home](https://danataldonia.com): Overview of Danat Aldonia car rental services in Dubai — fleet categories, delivery, and booking.
+- [Fleet](https://danataldonia.com/fleet): Browse the full fleet with filters by category, body type, and seats.
+- [Pricing](https://danataldonia.com/pricing): Daily, weekly, and monthly rental plans and what affects the rate.
+- [Delivery Areas](https://danataldonia.com/delivery-areas): Areas across Dubai and the UAE covered by vehicle delivery.
+- [About](https://danataldonia.com/about): Who Danat Aldonia is and how the company operates.
+- [FAQ](https://danataldonia.com/faq): Answers to common questions about rental requirements, insurance, deposits, and payment.
+- [Contact](https://danataldonia.com/contact): Reach Danat Aldonia via phone, WhatsApp, email, or the Dubai office.
+- [Terms & Conditions](https://danataldonia.com/terms): Rental requirements, booking, insurance, and deposit terms.
+- [Privacy Policy](https://danataldonia.com/privacy): How customer information is collected and used.
+
+## Vehicles
+
+- [Rolls-Royce Cullinan](https://danataldonia.com/fleet/rolls-royce-cullinan)
+- [Lamborghini Huracan EVO Spyder](https://danataldonia.com/fleet/lamborghini-huracan-evo)
+- [Porsche 911 GT3](https://danataldonia.com/fleet/porsche-911-gt3)
+- [Mercedes-Benz S500](https://danataldonia.com/fleet/mercedes-s500)
+- [Range Rover Sport](https://danataldonia.com/fleet/range-rover-sport)
+
+## Optional
+
+- [llms-full.txt](https://danataldonia.com/llms-full.txt): Full plain-text content of the Danat Aldonia website for AI ingestion.

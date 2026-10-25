@@ -7,7 +7,7 @@ const contactSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Danat Aldonia Rent a Car",
-    "image": "https://danataldonia.com/images/logo.png",
+    "image": "https://danataldonia.com/images/logo-icon.png",
     "@id": "https://danataldonia.com",
     "url": "https://danataldonia.com",
     "telephone": "+971525944022",
@@ -33,8 +33,8 @@ const contactSchema = {
         }
     ],
     "sameAs": [
-        "https://www.instagram.com/danataldonia/",
-        "https://wa.me/971525944022"
+        siteConfig.instagram,
+        siteConfig.whatsappBase
     ]
 };
 

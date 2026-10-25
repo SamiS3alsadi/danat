@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const packageIcons = [
@@ -117,7 +118,7 @@ export default function PricingPage() {
                             <h3 style={{ fontSize: '24px', fontWeight: 900, color: 'var(--accent-gold)' }}>{t.pricing.zeroFeesTitle}</h3>
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{t.pricing.zeroFeesDesc}</p>
                             <div style={{ paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                <a href="https://wa.me/+971525944022" className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
+                                <a href={siteConfig.whatsappMessage("Hi, I'd like a price quote for a car rental in Dubai.")} className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
                                     {t.pricing.inquireCta}
                                 </a>
                             </div>

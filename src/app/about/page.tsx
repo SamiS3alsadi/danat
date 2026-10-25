@@ -32,7 +32,7 @@ export default function AboutPage() {
                             alt="Luxury Car Dubai"
                             fill
                             className="object-cover"
-                            onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.png'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }}
                         />
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #000 0%, transparent 100%)' }}></div>
                     </div>

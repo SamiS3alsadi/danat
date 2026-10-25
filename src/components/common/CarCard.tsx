@@ -45,7 +45,7 @@ const CarCard = ({ car }: CarCardProps) => {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.png'; }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }}
                 />
                 {car.isBestDeal && (
                     <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>

@@ -9,7 +9,7 @@
         "pricePerDay": 3500,
         "pricePerWeek": 21000,
         "pricePerMonth": 75000,
-        "mainImage": "/images/cars/huracan-main.png",
+        "mainImage": "/images/cars/huracan-main.webp",
         "images": [],
         "specs": {
             "engine": "5.2L V10",
@@ -37,7 +37,7 @@
         "pricePerDay": 4500,
         "pricePerWeek": 28000,
         "pricePerMonth": 95000,
-        "mainImage": "/images/cars/cullinan-main.png",
+        "mainImage": "/images/cars/cullinan-main.webp",
         "images": [],
         "specs": {
             "engine": "6.75L V12",
@@ -65,7 +65,7 @@
         "pricePerDay": 850,
         "pricePerWeek": 5500,
         "pricePerMonth": 18000,
-        "mainImage": "/images/cars/range-rover-sport-main.png",
+        "mainImage": "/images/cars/range-rover-sport-main.webp",
         "images": [],
         "specs": {
             "engine": "3.0L 6-Cyl Turbo",
@@ -93,7 +93,7 @@
         "pricePerDay": 1200,
         "pricePerWeek": 7500,
         "pricePerMonth": 24000,
-        "mainImage": "/images/cars/mercedes-s500-main.png",
+        "mainImage": "/images/cars/mercedes-s500-main.webp",
         "images": [],
         "specs": {
             "engine": "3.0L V6 Turbo",
@@ -121,7 +121,7 @@
         "pricePerDay": 2500,
         "pricePerWeek": 15000,
         "pricePerMonth": 55000,
-        "mainImage": "/images/cars/porsche-911-gt3-main.png",
+        "mainImage": "/images/cars/porsche-911-gt3-main.webp",
         "images": [],
         "specs": {
             "engine": "4.0L Flat-6",

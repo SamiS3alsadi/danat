@@ -69,14 +69,14 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     priority
-                                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.png'; }}
+                                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }}
                                 />
                             </div>
                             {car.images.length > 0 && (
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
                                     {[car.mainImage, ...car.images].slice(0, 4).map((img, i) => (
                                         <div key={i} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                            <Image src={img} alt={`${car.brand} ${car.name} view ${i + 1}`} fill sizes="(max-width: 768px) 25vw, 12vw" className="object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.png'; }} />
+                                            <Image src={img} alt={`${car.brand} ${car.name} view ${i + 1}`} fill sizes="(max-width: 768px) 25vw, 12vw" className="object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }} />
                                         </div>
                                     ))}
                                 </div>

@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const segmentSlugs = ["Economy", "Sedan", "SUV", "Van", "Luxury", "Supercar"];
+import { AVAILABLE_CATEGORIES, carCount } from "@/data/categories";
 
 const EconomyIcon = () => (
     <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
@@ -58,24 +57,27 @@ const FleetSegments = () => {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '24px' }}>
-                    {t.segments.items.map((segment, index) => (
-                        <Link
-                            key={index}
-                            href={`/fleet?segment=${segmentSlugs[index]}`}
-                            className="group card"
-                            style={{ padding: '32px', backgroundColor: 'var(--surface-primary)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '24px', textAlign: 'center', transition: 'all 0.3s ease', display: 'block', cursor: 'pointer' }}
-                        >
-                            <div style={{ color: 'var(--accent-gold)', display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-                                {segmentIcons[index]}
-                            </div>
-                            <h3 style={{ color: '#fff', fontWeight: 700, fontSize: '14px', textTransform: 'uppercase' as const, letterSpacing: '0.1em' }}>
-                                {segment.name}
-                            </h3>
-                            <p style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginTop: '8px' }}>
-                                {segment.count}
-                            </p>
-                        </Link>
-                    ))}
+                    {AVAILABLE_CATEGORIES.map((category) => {
+                        const count = carCount(category);
+                        return (
+                            <Link
+                                key={category.slug}
+                                href={`/fleet?category=${category.slug}`}
+                                className="group card"
+                                style={{ padding: '32px', backgroundColor: 'var(--surface-primary)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '24px', textAlign: 'center', transition: 'all 0.3s ease', display: 'block', cursor: 'pointer' }}
+                            >
+                                <div style={{ color: 'var(--accent-gold)', display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+                                    {segmentIcons[category.i18nIndex]}
+                                </div>
+                                <h3 style={{ color: '#fff', fontWeight: 700, fontSize: '14px', textTransform: 'uppercase' as const, letterSpacing: '0.1em' }}>
+                                    {t.segments.items[category.i18nIndex].name}
+                                </h3>
+                                <p style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginTop: '8px' }}>
+                                    {count} {count === 1 ? t.segments.carSingular : t.segments.carPlural}
+                                </p>
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </section>

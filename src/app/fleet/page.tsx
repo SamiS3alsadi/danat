@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import CarCard from "@/components/common/CarCard";
 import fleetData from "@/data/fleet.json";
 import { Car } from "@/data/types";
+import { AVAILABLE_CATEGORIES, findCategory, matchesCategory } from "@/data/categories";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 
@@ -19,23 +20,20 @@ const FleetPage = () => {
         if (debounceTimer.current) clearTimeout(debounceTimer.current);
         debounceTimer.current = setTimeout(() => setSearchQuery(value), 300);
     }, []);
-    const [filterSegment, setFilterSegment] = useState<string>("All");
-    const [filterType, setFilterType] = useState<string>("All");
+    const [filterCategory, setFilterCategory] = useState<string>("All");
     const [filterSeats, setFilterSeats] = useState<string>("All");
     const [sortBy, setSortBy] = useState<string>("recommended");
 
-    // Get search param from URL if present
+    // Preselect a category from the URL — ?category= , or legacy ?segment=
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const segment = params.get("segment");
-        if (segment) {
+        const category = findCategory(params.get("category") ?? params.get("segment"));
+        if (category) {
             // eslint-disable-next-line react-hooks/set-state-in-effect
-            setFilterSegment(segment);
+            setFilterCategory(category.slug);
         }
     }, []);
 
-    const segments = ["All", "Economy", "Mid-Range", "Premium", "Luxury", "Supercar"];
-    const types = ["All", "Sedan", "SUV", "Van", "Economy", "Luxury"];
     const seatOptions = ["All", "2", "4", "5", "7+"];
 
     const sortOptions = [
@@ -50,14 +48,13 @@ const FleetPage = () => {
             const searchMatch = searchQuery === "" ||
                 car.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 car.brand.toLowerCase().includes(searchQuery.toLowerCase());
-            const segmentMatch = filterSegment === "All" || car.segment === filterSegment;
-            const typeMatch = filterType === "All" || car.type === filterType;
+            const categoryMatch = filterCategory === "All" || matchesCategory(car, filterCategory);
             const seatsMatch = filterSeats === "All" ||
                 (filterSeats === "2" && car.specs.seats === 2) ||
                 (filterSeats === "4" && car.specs.seats === 4) ||
                 (filterSeats === "5" && car.specs.seats === 5) ||
                 (filterSeats === "7+" && car.specs.seats >= 7);
-            return searchMatch && segmentMatch && typeMatch && seatsMatch;
+            return searchMatch && categoryMatch && seatsMatch;
         });
 
         switch (sortBy) {
@@ -81,7 +78,7 @@ const FleetPage = () => {
         }
 
         return result;
-    }, [cars, searchQuery, filterSegment, filterType, filterSeats, sortBy]);
+    }, [cars, searchQuery, filterCategory, filterSeats, sortBy]);
 
     return (
         <div className="bg-black min-h-screen pb-24">
@@ -118,32 +115,21 @@ const FleetPage = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="fleet-segment" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
-                                    {t.fleetPage.segmentLabel}
+                                <label htmlFor="fleet-category" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
+                                    {t.fleetPage.categoryLabel}
                                 </label>
                                 <select
-                                    id="fleet-segment"
-                                    value={filterSegment}
-                                    onChange={(e) => setFilterSegment(e.target.value)}
+                                    id="fleet-category"
+                                    value={filterCategory}
+                                    onChange={(e) => setFilterCategory(e.target.value)}
                                     style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer' }}
                                 >
                                     <option value="All">{t.fleetPage.allSeats}</option>
-                                    {segments.slice(1).map(s => <option key={s} value={s}>{s}</option>)}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label htmlFor="fleet-type" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, display: 'block', marginBottom: '6px' }}>
-                                    {t.fleetPage.typeLabel}
-                                </label>
-                                <select
-                                    id="fleet-type"
-                                    value={filterType}
-                                    onChange={(e) => setFilterType(e.target.value)}
-                                    style={{ backgroundColor: 'var(--surface-secondary)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', color: '#fff', cursor: 'pointer' }}
-                                >
-                                    <option value="All">{t.fleetPage.allSeats}</option>
-                                    {types.slice(1).map(type => <option key={type} value={type}>{type}</option>)}
+                                    {AVAILABLE_CATEGORIES.map(category => (
+                                        <option key={category.slug} value={category.slug}>
+                                            {t.segments.items[category.i18nIndex].name}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
 
@@ -203,7 +189,7 @@ const FleetPage = () => {
                             <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{t.fleetPage.noResults}</h2>
                             <p style={{ color: 'var(--text-secondary)' }}>{t.fleetPage.noResultsDesc}</p>
                             <button
-                                onClick={() => { setFilterType("All"); setFilterSeats("All"); setFilterSegment("All"); setSearchQuery(""); setSearchInput(""); }}
+                                onClick={() => { setFilterCategory("All"); setFilterSeats("All"); setSearchQuery(""); setSearchInput(""); }}
                                 style={{ marginTop: '32px', color: 'var(--accent-gold)', fontWeight: 700, cursor: 'pointer', background: 'none', border: 'none', fontSize: '14px' }}
                             >
                                 {t.fleetPage.clearFilters}

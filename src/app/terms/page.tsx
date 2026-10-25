@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms & Conditions | Danat Aldonia Rent a Car",
+    description:
+        "Rental requirements, booking and cancellation, insurance excess, security deposits and traffic fines for car rentals with Danat Aldonia in Dubai.",
+};
+
 export default function TermsPage() {
     return (
         <div className="bg-black min-h-screen py-24">

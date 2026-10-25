@@ -44,7 +44,7 @@ export default function DeliveryAreasPage() {
                     <p style={{ color: 'var(--text-secondary)', maxWidth: '480px', lineHeight: 1.7 }}>
                         {t.contact.deliverDesc}
                     </p>
-                    <a href={siteConfig.whatsappBase} className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '14px' }}>
+                    <a href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")} className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '14px' }}>
                         WhatsApp
                     </a>
                 </div>

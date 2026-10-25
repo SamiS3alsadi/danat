@@ -36,7 +36,7 @@ const FinalCTA = () => {
                         </p>
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
                             <MagneticButton>
-                                <a href={siteConfig.whatsappBase} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '14px 40px' }}>
+                                <a href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '14px 40px' }}>
                                     {t.cta.bookWhatsApp}
                                 </a>
                             </MagneticButton>

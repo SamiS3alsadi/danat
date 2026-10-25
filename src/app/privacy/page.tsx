@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | Danat Aldonia Rent a Car",
+    description:
+        "How Danat Aldonia collects, uses and safeguards your personal information when you book a car rental in Dubai.",
+};
+
 export default function PrivacyPage() {
     return (
         <div className="bg-black min-h-screen py-24">

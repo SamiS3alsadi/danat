@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import FAQAccordion from "@/components/home/FAQAccordion";
+import { siteConfig } from "@/config/site";
+
+export const metadata: Metadata = {
+    title: "Car Rental FAQ | Danat Aldonia Dubai",
+    description:
+        "Documents, minimum age, insurance, deposits, delivery and payment — what you need to know before renting a car in Dubai. Economy to supercars, one standard of service.",
+};
 
 export default function FAQPage() {
     const faqSchema = {
@@ -24,8 +32,8 @@ export default function FAQPage() {
                 <section className="container pb-24" style={{ maxWidth: 'var(--container-width)', margin: '0 auto', padding: '0 24px 96px' }}>
                     <div className="bg-surface-primary border border-white/5 rounded-3xl p-12 text-center" style={{ backgroundColor: 'var(--surface-primary)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '24px', padding: '48px', textAlign: 'center' }}>
                         <h2 className="text-2xl font-black text-white mb-6" style={{ fontSize: '24px', fontWeight: 900, color: '#fff' }}>Still have questions?</h2>
-                        <p className="text-secondary mb-10" style={{ color: 'var(--text-secondary)', marginBottom: '40px' }}>Our team is available 24/7 to assist you with any inquiries regarding our feet, pricing, or rental policies.</p>
-                        <a href="https://wa.me/+971525944022" className="btn btn-primary">Message Us on WhatsApp</a>
+                        <p className="text-secondary mb-10" style={{ color: 'var(--text-secondary)', marginBottom: '40px' }}>Our team is available 24/7 to assist you with any inquiries regarding our fleet, pricing, or rental policies.</p>
+                        <a href={siteConfig.whatsappMessage("Hi, I have a question about renting a car.")} className="btn btn-primary">Message Us on WhatsApp</a>
                     </div>
                 </section>
             </div>
