@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { staticPageMetadata } from "@/i18n/meta";
+import { isLocale } from "@/i18n/routes";
 import { siteConfig } from "@/config/site";
 import ContactClient from "./ContactClient";
 
-export const metadata: Metadata = {
-    title: "Contact Us | Danat Aldonia Car Rental Dubai",
-    description:
-        "Call, WhatsApp or email Danat Aldonia to book a car in Dubai. 24/7 support, 60-minute delivery, and the same service standard for every category.",
-};
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    return staticPageMetadata(isLocale(lang) ? lang : "en", "/contact");
+}
 
 const contactSchema = {
     "@context": "https://schema.org",

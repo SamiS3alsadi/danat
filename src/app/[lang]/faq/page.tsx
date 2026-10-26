@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { staticPageMetadata } from "@/i18n/meta";
+import { isLocale } from "@/i18n/routes";
 import FAQAccordion from "@/components/home/FAQAccordion";
 import { siteConfig } from "@/config/site";
 
-export const metadata: Metadata = {
-    title: "Car Rental FAQ | Danat Aldonia Dubai",
-    description:
-        "Documents, minimum age, insurance, deposits, delivery and payment — what to know before renting a car in Dubai, in any category.",
-};
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    return staticPageMetadata(isLocale(lang) ? lang : "en", "/faq");
+}
 
 export default function FAQPage() {
     const faqSchema = {

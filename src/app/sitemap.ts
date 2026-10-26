@@ -1,28 +1,76 @@
 import { MetadataRoute } from "next";
 import fleetData from "@/data/fleet.json";
 import { Car } from "@/data/types";
+import { AR_INDEXABLE, LOCALES, ROUTES, urlFor } from "@/i18n/routes";
+import { Locale } from "@/i18n/translations";
 
-const BASE_URL = "https://danataldonia.com";
+const PRIORITY: Record<string, number> = {
+    "/": 1,
+    "/fleet": 0.9,
+    "/pricing": 0.7,
+    "/delivery-areas": 0.7,
+    "/about": 0.6,
+    "/faq": 0.6,
+    "/contact": 0.6,
+    "/terms": 0.3,
+    "/privacy": 0.3,
+};
+
+const CHANGE_FREQUENCY: Record<string, "weekly" | "monthly" | "yearly"> = {
+    "/": "weekly",
+    "/fleet": "weekly",
+    "/pricing": "monthly",
+    "/delivery-areas": "monthly",
+    "/about": "monthly",
+    "/faq": "monthly",
+    "/contact": "monthly",
+    "/terms": "yearly",
+    "/privacy": "yearly",
+};
+
+/**
+ * Both locales are listed, each entry carrying the full set of hreflang
+ * alternates. While AR_INDEXABLE is false the Arabic URLs are left out: a
+ * sitemap that submits noindex URLs just earns "Submitted URL marked
+ * noindex" warnings in Search Console. Flipping that one flag publishes them.
+ */
+function submittedLocales(): Locale[] {
+    return LOCALES.filter((locale) => locale !== "ar" || AR_INDEXABLE);
+}
+
+function alternatesFor(route: string) {
+    return {
+        languages: {
+            en: urlFor("en", route),
+            ar: urlFor("ar", route),
+            "x-default": urlFor("en", route),
+        },
+    };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const staticPages: MetadataRoute.Sitemap = [
-        { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-        { url: `${BASE_URL}/fleet`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-        { url: `${BASE_URL}/pricing`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-        { url: `${BASE_URL}/delivery-areas`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-        { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-        { url: `${BASE_URL}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-        { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-        { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-        { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    ];
+    const lastModified = new Date();
+    const locales = submittedLocales();
 
-    const carPages: MetadataRoute.Sitemap = (fleetData as Car[]).map((car) => ({
-        url: `${BASE_URL}/fleet/${car.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.8,
-    }));
+    const staticPages: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+        ROUTES.map((route) => ({
+            url: urlFor(locale, route),
+            lastModified,
+            changeFrequency: CHANGE_FREQUENCY[route],
+            priority: PRIORITY[route],
+            alternates: alternatesFor(route),
+        })),
+    );
+
+    const carPages: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+        (fleetData as Car[]).map((car) => ({
+            url: urlFor(locale, `/fleet/${car.slug}`),
+            lastModified,
+            changeFrequency: "monthly" as const,
+            priority: 0.8,
+            alternates: alternatesFor(`/fleet/${car.slug}`),
+        })),
+    );
 
     return [...staticPages, ...carPages];
 }

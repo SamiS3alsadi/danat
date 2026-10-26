@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 
 const Footer = () => {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     return (
@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '48px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
+                        <Link href={localeHref("/")} style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
                             <Image src="/images/logo-icon.png" alt="Danat Al Donia" width={56} height={56} style={{ objectFit: 'contain', height: '56px', width: '56px' }} />
                             <Image src="/images/logo-text.png" alt="Danat Al Donia Car Rental" width={160} height={36} style={{ objectFit: 'contain', height: '36px', width: 'auto' }} />
                         </Link>
@@ -23,20 +23,20 @@ const Footer = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         <h4 style={{ color: '#fff', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '16px' }}>{t.footer.quickLinks}</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <Link href="/fleet" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.fleet}</Link>
-                            <Link href="/pricing" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.pricing}</Link>
-                            <Link href="/about" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.about}</Link>
-                            <Link href="/faq" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.faq}</Link>
+                            <Link href={localeHref("/fleet")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.fleet}</Link>
+                            <Link href={localeHref("/pricing")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.pricing}</Link>
+                            <Link href={localeHref("/about")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.about}</Link>
+                            <Link href={localeHref("/faq")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.faq}</Link>
                         </div>
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         <h4 style={{ color: '#fff', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '16px' }}>{t.footer.information}</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <Link href="/terms" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.terms}</Link>
-                            <Link href="/privacy" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.privacy}</Link>
-                            <Link href="/contact" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.contact}</Link>
-                            <Link href="/delivery-areas" className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.delivery}</Link>
+                            <Link href={localeHref("/terms")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.terms}</Link>
+                            <Link href={localeHref("/privacy")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.privacy}</Link>
+                            <Link href={localeHref("/contact")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.contact}</Link>
+                            <Link href={localeHref("/delivery-areas")} className="hover:text-gold transition-colors" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{t.footer.links.delivery}</Link>
                         </div>
                     </div>
 

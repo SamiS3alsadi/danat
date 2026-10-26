@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STORAGE_KEY = "danat-cookie-consent";
 
 const CookieConsent = () => {
     const [visible, setVisible] = useState(false);
+    const { localeHref } = useLanguage();
 
     useEffect(() => {
         try {
@@ -55,7 +57,7 @@ const CookieConsent = () => {
             <div style={{ fontSize: '14px', lineHeight: 1.5, marginBottom: '14px', color: 'var(--text-secondary)' }}>
                 We use cookies to improve your experience and understand how our site is used.
                 See our{' '}
-                <a href="/privacy" style={{ color: 'var(--accent-gold)', textDecoration: 'underline' }}>
+                <a href={localeHref("/privacy")} style={{ color: 'var(--accent-gold)', textDecoration: 'underline' }}>
                     Privacy Policy
                 </a>
                 .

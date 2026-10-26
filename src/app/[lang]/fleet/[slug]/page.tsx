@@ -3,43 +3,58 @@ import { notFound } from "next/navigation";
 import fleetData from "@/data/fleet.json";
 import { Car } from "@/data/types";
 import { siteConfig } from "@/config/site";
+import { buildMetadata } from "@/i18n/meta";
+import { isLocale, urlFor } from "@/i18n/routes";
 import CarDetailClient from "./CarDetailClient";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
+    const { lang, slug } = await params;
+    const locale = isLocale(lang) ? lang : "en";
     const car = (fleetData as Car[]).find((c) => c.slug === slug);
 
     if (!car) {
-        return { title: "Car Not Found | Danat Aldonia" };
+        return { title: locale === "ar" ? "السيارة غير موجودة | دانة الدنيا" : "Car Not Found | Danat Aldonia" };
     }
 
     // The price always comes from pricePerDay, so a rate change can never leave a stale title.
-    const title = `Rent ${car.brand} ${car.shortName ?? car.name} in Dubai | AED ${car.pricePerDay.toLocaleString()}/day`;
+    const price = car.pricePerDay.toLocaleString("en-US");
+    const name = car.shortName ?? car.name;
+    const title =
+        locale === "ar"
+            ? `استأجر ${car.brand} ${name} في دبي | ${price} درهم/يوم`
+            : `Rent ${car.brand} ${name} in Dubai | AED ${price}/day`;
+
+    // Arabic car copy lands in Phase 4; until then the English description is
+    // the fallback, which is acceptable while the Arabic tree is noindex.
     const description =
         car.metaDescription ??
-        `${car.description} Starting from AED ${car.pricePerDay.toLocaleString()} per day. Free delivery in Dubai.`;
+        `${car.description} Starting from AED ${price} per day. Free delivery in Dubai.`;
 
-    return {
+    return buildMetadata({
+        locale,
+        route: `/fleet/${car.slug}`,
         title,
         description,
-        openGraph: {
-            title,
-            description,
-            images: [{ url: car.mainImage, alt: `${car.brand} ${car.name} rental Dubai` }],
-            siteName: siteConfig.name,
-            type: "website",
-        },
-    };
+        images: [{ url: car.mainImage, alt: `${car.brand} ${car.name} rental Dubai` }],
+    });
 }
+
+/**
+ * Only the slugs from generateStaticParams exist. Without this, an unknown slug
+ * renders dynamically and loading.tsx flushes a 200 shell before notFound()
+ * resolves — a soft 404. (Pre-existing; the locale move surfaced it.)
+ */
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     return (fleetData as Car[]).map((car) => ({ slug: car.slug }));
 }
 
 export default async function CarDetailPage({ params }: Props) {
-    const { slug } = await params;
+    const { lang, slug } = await params;
+    const locale = isLocale(lang) ? lang : "en";
     const car = (fleetData as Car[]).find((c) => c.slug === slug);
 
     if (!car) notFound();
@@ -70,13 +85,13 @@ export default async function CarDetailPage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://danataldonia.com" },
-            { "@type": "ListItem", position: 2, name: "Fleet", item: "https://danataldonia.com/fleet" },
+            { "@type": "ListItem", position: 1, name: "Home", item: urlFor(locale, "/") },
+            { "@type": "ListItem", position: 2, name: "Fleet", item: urlFor(locale, "/fleet") },
             {
                 "@type": "ListItem",
                 position: 3,
                 name: `${car.brand} ${car.name}`,
-                item: `https://danataldonia.com/fleet/${car.slug}`,
+                item: urlFor(locale, `/fleet/${car.slug}`),
             },
         ],
     };

@@ -4,12 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitch from "./LanguageSwitch";
 import { siteConfig } from "@/config/site";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t, locale, toggleLanguage } = useLanguage();
+  const { t, localeHref } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,12 +21,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t.nav.home, href: "/" },
-    { name: t.nav.fleet, href: "/fleet" },
-    { name: t.nav.pricing, href: "/pricing" },
-    { name: t.nav.about, href: "/about" },
-    { name: t.nav.faq, href: "/faq" },
-    { name: t.nav.contact, href: "/contact" },
+    { name: t.nav.home, href: localeHref("/") },
+    { name: t.nav.fleet, href: localeHref("/fleet") },
+    { name: t.nav.pricing, href: localeHref("/pricing") },
+    { name: t.nav.about, href: localeHref("/about") },
+    { name: t.nav.faq, href: localeHref("/faq") },
+    { name: t.nav.contact, href: localeHref("/contact") },
   ];
 
   return (
@@ -41,7 +42,7 @@ const Navbar = () => {
       }}
     >
       <div className="container flex items-center justify-between">
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <Link href={localeHref("/")} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Image
             src="/images/logo-icon.png"
             alt="Danat Al Donia"
@@ -82,25 +83,7 @@ const Navbar = () => {
           ))}
 
           {/* Language Toggle */}
-          <button
-            onClick={toggleLanguage}
-            style={{
-              fontSize: '12px',
-              fontWeight: 700,
-              color: 'var(--accent-gold)',
-              background: 'none',
-              border: '1px solid var(--border-medium)',
-              borderRadius: '999px',
-              padding: '6px 14px',
-              cursor: 'pointer',
-              letterSpacing: '0.05em',
-              transition: 'var(--transition-fast)',
-            }}
-            className="hover:bg-gold/10 transition-colors"
-            aria-label="Toggle language"
-          >
-            {locale === "en" ? "العربية" : "English"}
-          </button>
+          <LanguageSwitch variant="desktop" />
 
           <a href={siteConfig.tel} className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '12px' }}>
             {t.nav.callNow}
@@ -109,27 +92,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-3">
-          <button
-            onClick={toggleLanguage}
-            style={{
-              fontSize: '11px',
-              fontWeight: 700,
-              color: 'var(--accent-gold)',
-              background: 'none',
-              border: '1px solid var(--border-medium)',
-              borderRadius: '999px',
-              padding: '10px 16px',
-              cursor: 'pointer',
-              minWidth: '44px',
-              minHeight: '44px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            aria-label="Toggle language"
-          >
-            {locale === "en" ? "ع" : "EN"}
-          </button>
+          <LanguageSwitch variant="mobile" />
           <button
             className="text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

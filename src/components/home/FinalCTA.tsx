@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import MagneticButton from "@/components/common/MagneticButton";
 
 const FinalCTA = () => {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
     return (
         <section style={{ paddingTop: '120px', paddingBottom: '120px' }}>
             <div className="container">
@@ -41,7 +41,7 @@ const FinalCTA = () => {
                                 </a>
                             </MagneticButton>
                             <MagneticButton>
-                                <Link href="/fleet" className="btn btn-secondary" style={{ padding: '14px 40px' }}>
+                                <Link href={localeHref("/fleet")} className="btn btn-secondary" style={{ padding: '14px 40px' }}>
                                     {t.cta.browseFleet}
                                 </Link>
                             </MagneticButton>

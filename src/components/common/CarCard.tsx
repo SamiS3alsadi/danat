@@ -35,7 +35,7 @@ const FuelIcon = () => (
 );
 
 const CarCard = ({ car }: CarCardProps) => {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
     return (
         <div className="card group flex flex-col overflow-hidden" style={{ padding: 0, cursor: 'pointer' }}>
             <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
@@ -98,7 +98,7 @@ const CarCard = ({ car }: CarCardProps) => {
                 </div>
 
                 <div style={{ display: 'flex', gap: '12px', marginTop: 'auto' }}>
-                    <Link href={`/fleet/${car.slug}`} className="btn btn-secondary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
+                    <Link href={localeHref(`/fleet/${car.slug}`)} className="btn btn-secondary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
                         {t.fleet.view}
                     </Link>
                     <a href={siteConfig.whatsappMessage(`Hi, I want to rent ${car.brand} ${car.name}.`)} className="btn btn-primary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>

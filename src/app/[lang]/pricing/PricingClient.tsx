@@ -22,7 +22,7 @@ const packageIcons = [
 const categoryPrices = ["AED 90", "AED 180", "AED 250", "AED 350", "AED 800", "AED 2500"];
 
 export default function PricingClient() {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
 
     return (
         <div className="bg-black min-h-screen py-24">
@@ -50,7 +50,7 @@ export default function PricingClient() {
                                 <h3 style={{ fontSize: '24px', fontWeight: 900, color: '#fff' }}>{pkg.name} {t.pricing.rental}</h3>
                             </div>
                             <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '32px' }}>{pkg.desc}</p>
-                            <Link href="/fleet" className="btn btn-secondary" style={{ display: 'block', width: '100%', textAlign: 'center' }}>
+                            <Link href={localeHref("/fleet")} className="btn btn-secondary" style={{ display: 'block', width: '100%', textAlign: 'center' }}>
                                 {t.pricing.browseFleet}
                             </Link>
                         </div>

@@ -42,7 +42,7 @@ const SupercarIcon = () => (
 const segmentIcons = [<EconomyIcon key="eco" />, <SedanIcon key="sed" />, <SUVIcon key="suv" />, <VanIcon key="van" />, <LuxuryIcon key="lux" />, <SupercarIcon key="sup" />];
 
 const FleetSegments = () => {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
 
     return (
         <section style={{ paddingTop: '96px', paddingBottom: '96px', backgroundColor: '#000' }}>
@@ -62,7 +62,7 @@ const FleetSegments = () => {
                         return (
                             <Link
                                 key={category.slug}
-                                href={`/fleet?category=${category.slug}`}
+                                href={localeHref(`/fleet?category=${category.slug}`)}
                                 className="group card"
                                 style={{ padding: '32px', backgroundColor: 'var(--surface-primary)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '24px', textAlign: 'center', transition: 'all 0.3s ease', display: 'block', cursor: 'pointer' }}
                             >

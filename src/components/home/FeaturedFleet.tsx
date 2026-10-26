@@ -7,7 +7,7 @@ import { Car } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeaturedFleet = () => {
-    const { t, isRTL } = useLanguage();
+    const { t, isRTL, localeHref } = useLanguage();
     const featuredCars = (fleet as Car[]).filter(car => car.isFeatured).slice(0, 6);
     const scrollerRef = useRef<HTMLDivElement | null>(null);
     const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -72,7 +72,7 @@ const FeaturedFleet = () => {
                                 <span aria-hidden="true">{isRTL ? '‹' : '›'}</span>
                             </button>
                         </div>
-                        <Link href="/fleet" className="btn btn-secondary" style={{ padding: '12px 28px', fontSize: '13px' }}>
+                        <Link href={localeHref("/fleet")} className="btn btn-secondary" style={{ padding: '12px 28px', fontSize: '13px' }}>
                             {t.fleet.viewFull}
                         </Link>
                     </div>

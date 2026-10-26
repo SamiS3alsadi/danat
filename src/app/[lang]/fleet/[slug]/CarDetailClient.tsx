@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 
 const CarDetailClient = ({ slug }: { slug: string }) => {
-    const { t } = useLanguage();
+    const { t, localeHref } = useLanguage();
     const today = new Date().toISOString().split("T")[0];
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -47,9 +47,9 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
             {/* Top Banner / Breadcrumb */}
             <section style={{ backgroundColor: 'var(--surface-primary)', borderBottom: '1px solid var(--border-subtle)', padding: '24px 0' }}>
                 <div className="container" style={{ maxWidth: 'var(--container-width)', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', gap: '16px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                    <Link href="/" style={{ color: 'var(--text-muted)' }}>{t.carDetail.breadcrumbHome}</Link>
+                    <Link href={localeHref("/")} style={{ color: 'var(--text-muted)' }}>{t.carDetail.breadcrumbHome}</Link>
                     <span style={{ color: 'var(--text-muted)' }}>/</span>
-                    <Link href="/fleet" style={{ color: 'var(--text-muted)' }}>{t.carDetail.breadcrumbFleet}</Link>
+                    <Link href={localeHref("/fleet")} style={{ color: 'var(--text-muted)' }}>{t.carDetail.breadcrumbFleet}</Link>
                     <span style={{ color: 'var(--text-muted)' }}>/</span>
                     <span style={{ color: 'var(--accent-gold)' }}>{car.name}</span>
                 </div>

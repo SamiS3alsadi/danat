@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import { staticPageMetadata } from "@/i18n/meta";
+import { isLocale } from "@/i18n/routes";
 
-export const metadata: Metadata = {
-    title: "Privacy Policy | Danat Aldonia Rent a Car",
-    description:
-        "How Danat Aldonia collects, uses and safeguards your personal information when you book a car rental in Dubai.",
-};
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    return staticPageMetadata(isLocale(lang) ? lang : "en", "/privacy");
+}
 
 export default function PrivacyPage() {
     return (

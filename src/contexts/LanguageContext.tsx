@@ -1,56 +1,47 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import translations, { Locale, TranslationKeys } from "@/i18n/translations";
+import { pathFor } from "@/i18n/routes";
 
 interface LanguageContextType {
   locale: Locale;
   t: TranslationKeys;
   isRTL: boolean;
-  toggleLanguage: () => void;
+  /** Prefixes an internal path with the active locale: "/fleet" -> "/ar/fleet". */
+  localeHref: (path: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
   locale: "en",
   t: translations.en,
   isRTL: false,
-  toggleLanguage: () => {},
+  localeHref: (path: string) => pathFor("en", path),
 });
 
-export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [locale, setLocale] = useState<Locale>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("locale") as Locale | null;
-    if (saved === "ar" || saved === "en") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLocale(saved);
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-    document.documentElement.setAttribute("data-locale", locale);
-    localStorage.setItem("locale", locale);
-  }, [locale]);
-
-  const toggleLanguage = () => {
-    setLocale((prev) => (prev === "en" ? "ar" : "en"));
-  };
-
-  return (
-    <LanguageContext.Provider
-      value={{
-        locale,
-        t: translations[locale] as TranslationKeys,
-        isRTL: locale === "ar",
-        toggleLanguage,
-      }}
-    >
-      {children}
-    </LanguageContext.Provider>
+/**
+ * The locale comes from the URL via the [lang] segment, so it is already
+ * correct in the server-rendered HTML — no localStorage, no post-hydration
+ * dir flip.
+ */
+export const LanguageProvider = ({
+  locale,
+  children,
+}: {
+  locale: Locale;
+  children: React.ReactNode;
+}) => {
+  const value = useMemo<LanguageContextType>(
+    () => ({
+      locale,
+      t: translations[locale] as TranslationKeys,
+      isRTL: locale === "ar",
+      localeHref: (path: string) => pathFor(locale, path),
+    }),
+    [locale],
   );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 export const useLanguage = () => useContext(LanguageContext);

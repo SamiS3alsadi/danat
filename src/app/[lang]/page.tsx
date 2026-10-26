@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { staticPageMetadata } from "@/i18n/meta";
+import { isLocale } from "@/i18n/routes";
 import Hero from "@/components/home/Hero";
 import TrustBar from "@/components/home/TrustBar";
 import TrustBadges from "@/components/home/TrustBadges";
@@ -8,6 +11,15 @@ import Reviews from "@/components/home/Reviews";
 import FAQAccordion from "@/components/home/FAQAccordion";
 import FleetSegments from "@/components/home/FleetSegments";
 import FinalCTA from "@/components/home/FinalCTA";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    return staticPageMetadata(isLocale(lang) ? lang : "en", "/");
+}
 
 export default function Home() {
   return (
