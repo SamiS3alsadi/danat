@@ -43,7 +43,7 @@ export default function NotFound() {
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
                     <Link href="/" className="btn btn-primary">Back to Home</Link>
                     <Link href="/fleet" className="btn btn-secondary">Browse Fleet</Link>
-                    <a href={siteConfig.whatsappBase} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                         Chat on WhatsApp
                     </a>
                 </div>

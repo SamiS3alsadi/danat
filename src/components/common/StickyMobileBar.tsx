@@ -1,24 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 
 const StickyMobileBar = () => {
-    const [isVisible, setIsVisible] = useState(false);
     const { t } = useLanguage();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsVisible(window.scrollY > 300);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
+    // Always on for mobile — call and WhatsApp are reachable without scrolling.
     return (
-        <div
-            className={`fixed bottom-0 left-0 w-full z-50 p-4 transition-transform duration-500 md:hidden ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}
-        >
+        <div className="fixed bottom-0 left-0 w-full z-50 p-4 md:hidden">
             <div style={{ display: 'flex', gap: '16px' }}>
                 <a
                     href={siteConfig.tel}
@@ -30,7 +19,7 @@ const StickyMobileBar = () => {
                     {t.sticky.callNow}
                 </a>
                 <a
-                    href={siteConfig.whatsappBase}
+                    href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")}
                     style={{ flex: 1, backgroundColor: '#25D366', color: '#fff', fontWeight: 900, padding: '16px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 10px 25px rgba(37, 211, 102, 0.4)', textDecoration: 'none', minHeight: '52px' }}
                 >
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

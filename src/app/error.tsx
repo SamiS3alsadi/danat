@@ -51,7 +51,7 @@ export default function Error({
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
                     <button onClick={reset} className="btn btn-primary">Try Again</button>
                     <Link href="/" className="btn btn-secondary">Back to Home</Link>
-                    <a href={siteConfig.whatsappBase} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                         Chat on WhatsApp
                     </a>
                 </div>

@@ -71,7 +71,7 @@ const Footer = () => {
                     </p>
                     <div style={{ display: 'flex', gap: '32px' }}>
                         <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" style={{ color: 'var(--text-muted)', fontSize: '12px' }}>Instagram</a>
-                        <a href={siteConfig.whatsappBase} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" style={{ color: 'var(--text-muted)', fontSize: '12px' }}>WhatsApp</a>
+                        <a href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" style={{ color: 'var(--text-muted)', fontSize: '12px' }}>WhatsApp</a>
                     </div>
                 </div>
             </div>

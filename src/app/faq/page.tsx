@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
     title: "Car Rental FAQ | Danat Aldonia Dubai",
     description:
-        "Documents, minimum age, insurance, deposits, delivery and payment — what you need to know before renting a car in Dubai. Economy to supercars, one standard of service.",
+        "Documents, minimum age, insurance, deposits, delivery and payment — what to know before renting a car in Dubai, in any category.",
 };
 
 export default function FAQPage() {
