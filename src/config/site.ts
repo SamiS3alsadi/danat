@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Danat Aldonia Rent a Car",
   tagline: "Premium Car Rental Dubai",
   description:
-    "Experience the ultimate luxury car rental in Dubai. Wide range of supercars, SUVs, and luxury sedans with 24/7 support and doorstep delivery.",
+    "Every car, every budget, one standard of service. Rent economy to supercars in Dubai with 60-minute delivery, insurance included and no hidden fees.",
   phone: "+971525944022",
   phoneDisplay: "+971 52 594 4022",
   email: "alsdysamy594@gmail.com",

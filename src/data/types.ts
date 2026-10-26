@@ -23,6 +23,10 @@ export interface Car {
     pricePerMonth: number;
     mainImage: string;
     images: string[];
+    /** Shorter name used only in the meta title, to keep it under 60 characters. */
+    shortName?: string;
+    /** Hand-written meta description; falls back to `description` + price when absent. */
+    metaDescription?: string;
     specs: CarSpecs;
     description: string;
     isFeatured: boolean;

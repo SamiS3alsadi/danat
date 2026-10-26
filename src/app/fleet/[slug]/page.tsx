@@ -15,8 +15,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: "Car Not Found | Danat Aldonia" };
     }
 
-    const title = `Rent ${car.brand} ${car.name} in Dubai | AED ${car.pricePerDay.toLocaleString()}/day`;
-    const description = `${car.description} Starting from AED ${car.pricePerDay.toLocaleString()} per day. Free delivery in Dubai.`;
+    // The price always comes from pricePerDay, so a rate change can never leave a stale title.
+    const title = `Rent ${car.brand} ${car.shortName ?? car.name} in Dubai | AED ${car.pricePerDay.toLocaleString()}/day`;
+    const description =
+        car.metaDescription ??
+        `${car.description} Starting from AED ${car.pricePerDay.toLocaleString()} per day. Free delivery in Dubai.`;
 
     return {
         title,
