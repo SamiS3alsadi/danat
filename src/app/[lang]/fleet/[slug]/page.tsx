@@ -5,6 +5,7 @@ import { Car } from "@/data/types";
 import { siteConfig } from "@/config/site";
 import { buildMetadata } from "@/i18n/meta";
 import { isLocale, urlFor } from "@/i18n/routes";
+import { serverT } from "@/i18n/server";
 import CarDetailClient from "./CarDetailClient";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -26,11 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             ? `استأجر ${car.brand} ${name} في دبي | ${price} درهم/يوم`
             : `Rent ${car.brand} ${name} in Dubai | AED ${price}/day`;
 
-    // Arabic car copy lands in Phase 4; until then the English description is
-    // the fallback, which is acceptable while the Arabic tree is noindex.
     const description =
-        car.metaDescription ??
-        `${car.description} Starting from AED ${price} per day. Free delivery in Dubai.`;
+        car.metaDescription?.[locale] ??
+        (locale === "ar"
+            ? `${car.description.ar} يبدأ من ${price} درهم يومياً. توصيل مجاني في دبي.`
+            : `${car.description.en} Starting from AED ${price} per day. Free delivery in Dubai.`);
 
     return buildMetadata({
         locale,
@@ -55,6 +56,7 @@ export async function generateStaticParams() {
 export default async function CarDetailPage({ params }: Props) {
     const { lang, slug } = await params;
     const locale = isLocale(lang) ? lang : "en";
+    const t = serverT(lang);
     const car = (fleetData as Car[]).find((c) => c.slug === slug);
 
     if (!car) notFound();
@@ -63,7 +65,7 @@ export default async function CarDetailPage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "Product",
         name: `${car.brand} ${car.name}`,
-        description: car.description,
+        description: car.description[locale],
         image: car.mainImage,
         brand: { "@type": "Brand", name: car.brand },
         offers: {
@@ -85,8 +87,8 @@ export default async function CarDetailPage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: urlFor(locale, "/") },
-            { "@type": "ListItem", position: 2, name: "Fleet", item: urlFor(locale, "/fleet") },
+            { "@type": "ListItem", position: 1, name: t.carDetail.breadcrumbHome, item: urlFor(locale, "/") },
+            { "@type": "ListItem", position: 2, name: t.carDetail.breadcrumbFleet, item: urlFor(locale, "/fleet") },
             {
                 "@type": "ListItem",
                 position: 3,

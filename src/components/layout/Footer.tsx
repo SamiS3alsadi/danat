@@ -14,8 +14,8 @@ const Footer = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '48px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         <Link href={localeHref("/")} style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
-                            <Image src="/images/logo-icon.png" alt="Danat Al Donia" width={56} height={56} style={{ objectFit: 'contain', height: '56px', width: '56px' }} />
-                            <Image src="/images/logo-text.png" alt="Danat Al Donia Car Rental" width={160} height={36} style={{ objectFit: 'contain', height: '36px', width: 'auto' }} />
+                            <Image src="/images/logo-icon.png" alt={t.a11y.logoAlt} width={56} height={56} style={{ objectFit: 'contain', height: '56px', width: '56px' }} />
+                            <Image src="/images/logo-text.png" alt={t.a11y.logoTextAlt} width={160} height={36} style={{ objectFit: 'contain', height: '36px', width: 'auto' }} />
                         </Link>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '300px' }}>{t.footer.desc}</p>
                     </div>

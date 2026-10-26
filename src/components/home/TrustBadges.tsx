@@ -1,12 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-interface Badge {
-    icon: ReactNode;
-    title: string;
-    subtitle: string;
-}
 
 const ShieldCheckIcon = () => (
     <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -44,19 +40,20 @@ const StarIcon = () => (
     </svg>
 );
 
-const badges: Badge[] = [
-    { icon: <ShieldCheckIcon />, title: "Fully Insured", subtitle: "Comprehensive coverage" },
-    { icon: <TruckIcon />, title: "Free Delivery", subtitle: "Anywhere in Dubai" },
-    { icon: <ClockIcon />, title: "60-min Delivery", subtitle: "Fast doorstep service" },
-    { icon: <CreditCardIcon />, title: "No Hidden Fees", subtitle: "Transparent pricing" },
-    { icon: <LockClosedIcon />, title: "Secure Booking", subtitle: "Verified by SSL" },
-    { icon: <StarIcon />, title: "4.9 / 5 Rating", subtitle: "Trusted by 500+ clients" },
+const badgeIcons: ReactNode[] = [
+    <ShieldCheckIcon key="insured" />,
+    <TruckIcon key="delivery" />,
+    <ClockIcon key="speed" />,
+    <CreditCardIcon key="fees" />,
+    <LockClosedIcon key="secure" />,
+    <StarIcon key="rating" />,
 ];
 
 const TrustBadges = () => {
+    const { t } = useLanguage();
     return (
         <section
-            aria-label="Why choose Danat Aldonia"
+            aria-label={t.a11y.whyChoose}
             style={{ padding: '48px 0', backgroundColor: 'var(--surface-primary)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}
         >
             <div className="container" style={{ maxWidth: 'var(--container-width)', margin: '0 auto', padding: '0 24px' }}>
@@ -67,7 +64,7 @@ const TrustBadges = () => {
                         gap: '24px',
                     }}
                 >
-                    {badges.map((b) => (
+                    {t.trustBadges.items.map((b, i) => (
                         <div
                             key={b.title}
                             style={{
@@ -80,7 +77,7 @@ const TrustBadges = () => {
                                 backgroundColor: 'rgba(0,0,0,0.3)',
                             }}
                         >
-                            <span style={{ color: 'var(--accent-gold)', flexShrink: 0 }}>{b.icon}</span>
+                            <span style={{ color: 'var(--accent-gold)', flexShrink: 0 }}>{badgeIcons[i]}</span>
                             <div>
                                 <div style={{ color: '#fff', fontWeight: 700, fontSize: '14px', lineHeight: 1.2 }}>{b.title}</div>
                                 <div style={{ color: 'var(--text-muted)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '2px' }}>

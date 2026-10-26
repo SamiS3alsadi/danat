@@ -32,6 +32,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Serves app/global-not-found.tsx for URLs that match no route. Still flagged
+  // experimental in Next 16.1.6 (defaults to false).
+  experimental: {
+    globalNotFound: true,
+  },
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,

@@ -45,7 +45,7 @@ const Navbar = () => {
         <Link href={localeHref("/")} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Image
             src="/images/logo-icon.png"
-            alt="Danat Al Donia"
+            alt={t.a11y.logoAlt}
             width={44}
             height={44}
             className="object-contain"
@@ -54,7 +54,7 @@ const Navbar = () => {
           />
           <Image
             src="/images/logo-text.png"
-            alt="Danat Al Donia Car Rental"
+            alt={t.a11y.logoTextAlt}
             width={140}
             height={32}
             className="object-contain"
@@ -96,7 +96,7 @@ const Navbar = () => {
           <button
             className="text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label={t.a11y.toggleMenu}
           >
             {isMobileMenuOpen ? (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

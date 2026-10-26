@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
                         <div style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                             <Image
                                 src="/images/hero-car.webp"
-                                alt="Danat Aldonia luxury car"
+                                alt={t.a11y.whyChooseCarAlt}
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 style={{ objectFit: 'cover' }}

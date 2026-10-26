@@ -35,7 +35,7 @@ const FuelIcon = () => (
 );
 
 const CarCard = ({ car }: CarCardProps) => {
-    const { t, localeHref } = useLanguage();
+    const { t, localeHref, locale } = useLanguage();
     return (
         <div className="card group flex flex-col overflow-hidden" style={{ padding: 0, cursor: 'pointer' }}>
             <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
@@ -85,15 +85,15 @@ const CarCard = ({ car }: CarCardProps) => {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span style={{ color: 'var(--text-muted)' }}><GearIcon /></span>
-                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{car.specs.transmission}</span>
+                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{t.specValues.transmission[car.specs.transmission]}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span style={{ color: 'var(--text-muted)' }}><LuggageIcon /></span>
-                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{car.specs.luggage}</span>
+                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{car.specs.luggage[locale]}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span style={{ color: 'var(--text-muted)' }}><FuelIcon /></span>
-                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{car.specs.fuel}</span>
+                        <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{t.specValues.fuel[car.specs.fuel]}</span>
                     </div>
                 </div>
 

@@ -29,7 +29,7 @@ export default function AboutClient() {
                     <div style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '24px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
                         <Image
                             src="/images/cars/huracan-main.jpg"
-                            alt="Luxury Car Dubai"
+                            alt={t.a11y.aboutCarAlt}
                             fill
                             className="object-cover"
                             onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }}

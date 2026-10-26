@@ -1,3 +1,9 @@
+/** A string that exists in both locales. */
+export interface Localized {
+    en: string;
+    ar: string;
+}
+
 export type CarType = "Supercar" | "Luxury" | "SUV" | "Sedan" | "Economy" | "Van";
 
 export interface CarSpecs {
@@ -8,7 +14,7 @@ export interface CarSpecs {
     seats: number;
     transmission: "Automatic" | "Manual";
     fuel: "Petrol" | "Diesel" | "Electric" | "Hybrid";
-    luggage: string;
+    luggage: Localized;
 }
 
 export interface Car {
@@ -26,9 +32,9 @@ export interface Car {
     /** Shorter name used only in the meta title, to keep it under 60 characters. */
     shortName?: string;
     /** Hand-written meta description; falls back to `description` + price when absent. */
-    metaDescription?: string;
+    metaDescription?: Localized;
     specs: CarSpecs;
-    description: string;
+    description: Localized;
     isFeatured: boolean;
     isBestDeal: boolean;
     depositRequired: boolean;

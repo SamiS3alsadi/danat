@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 
 const CarDetailClient = ({ slug }: { slug: string }) => {
-    const { t, localeHref } = useLanguage();
+    const { t, localeHref, locale } = useLanguage();
     const today = new Date().toISOString().split("T")[0];
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -94,7 +94,7 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                     <span style={{ fontSize: '36px', fontWeight: 900, color: 'var(--accent-gold)' }}>AED {car.pricePerDay.toLocaleString()}</span>
                                     <span style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '6px' }}>{t.carDetail.perDay}</span>
                                 </div>
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '18px', lineHeight: 1.6, marginBottom: '32px' }}>{car.description}</p>
+                                <p style={{ color: 'var(--text-secondary)', fontSize: '18px', lineHeight: 1.6, marginBottom: '32px' }}>{car.description[locale]}</p>
                             </div>
 
                             {/* Date Range + Price Calculator */}
@@ -104,7 +104,7 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                 </label>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
                                     <input
-                                        aria-label="Pickup date"
+                                        aria-label={t.a11y.pickupDate}
                                         type="date"
                                         min={today}
                                         value={startDate}
@@ -115,7 +115,7 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                         style={{ width: '100%', backgroundColor: '#000', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '12px', padding: '12px 14px', color: '#fff', boxSizing: 'border-box', colorScheme: 'dark' }}
                                     />
                                     <input
-                                        aria-label="Return date"
+                                        aria-label={t.a11y.returnDate}
                                         type="date"
                                         min={startDate || today}
                                         value={endDate}
@@ -127,11 +127,11 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                                         <div>
                                             <span style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block' }}>
-                                                {days} {days === 1 ? 'day' : 'days'} × AED {effectiveRate.toLocaleString()}
-                                                {days >= 30 && ' (monthly rate)'}
-                                                {days >= 7 && days < 30 && ' (weekly rate)'}
+                                                {days} {days === 1 ? t.carDetail.day : t.carDetail.days} × AED {effectiveRate.toLocaleString()}
+                                                {days >= 30 && t.carDetail.monthlyRate}
+                                                {days >= 7 && days < 30 && t.carDetail.weeklyRate}
                                             </span>
-                                            <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Estimated total</span>
+                                            <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.carDetail.estimatedTotal}</span>
                                         </div>
                                         <span style={{ fontSize: '22px', fontWeight: 900, color: 'var(--accent-gold)' }}>
                                             AED {totalPrice.toLocaleString()}
@@ -154,7 +154,7 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '24px', paddingTop: '40px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                                     <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.carDetail.transmission}</span>
-                                    <span style={{ color: '#fff', fontWeight: 700 }}>{car.specs.transmission}</span>
+                                    <span style={{ color: '#fff', fontWeight: 700 }}>{t.specValues.transmission[car.specs.transmission]}</span>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                                     <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.carDetail.seats}</span>
@@ -162,11 +162,11 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                                     <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.carDetail.fuel}</span>
-                                    <span style={{ color: '#fff', fontWeight: 700 }}>{car.specs.fuel}</span>
+                                    <span style={{ color: '#fff', fontWeight: 700 }}>{t.specValues.fuel[car.specs.fuel]}</span>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                                     <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.carDetail.luggage}</span>
-                                    <span style={{ color: '#fff', fontWeight: 700 }}>{car.specs.luggage}</span>
+                                    <span style={{ color: '#fff', fontWeight: 700 }}>{car.specs.luggage[locale]}</span>
                                 </div>
                             </div>
                         </div>

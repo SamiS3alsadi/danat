@@ -9,6 +9,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/config/site";
 import { BASE_URL, LOCALES, isLocale, urlFor } from "@/i18n/routes";
 import { routeMeta, staticPageMetadata } from "@/i18n/meta";
+import { serverT } from "@/i18n/server";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -40,6 +41,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   if (!isLocale(lang)) notFound();
 
   const isRTL = lang === "ar";
+  const skipLabel = serverT(lang).a11y.skipToContent;
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -79,7 +81,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             }}
             className="focus:left-0 focus:w-auto focus:h-auto focus:p-4 focus:z-[9999] focus:bg-black focus:text-white"
           >
-            Skip to main content
+            {skipLabel}
           </a>
           <Navbar />
           <main id="main-content" style={{ flex: 1, paddingTop: 'var(--header-height)' }}>

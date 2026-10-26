@@ -7,7 +7,7 @@ const STORAGE_KEY = "danat-cookie-consent";
 
 const CookieConsent = () => {
     const [visible, setVisible] = useState(false);
-    const { localeHref } = useLanguage();
+    const { t, localeHref } = useLanguage();
 
     useEffect(() => {
         try {
@@ -35,7 +35,7 @@ const CookieConsent = () => {
         <div
             role="dialog"
             aria-live="polite"
-            aria-label="Cookie consent"
+            aria-label={t.cookies.ariaLabel}
             style={{
                 position: 'fixed',
                 bottom: '16px',
@@ -55,10 +55,10 @@ const CookieConsent = () => {
             }}
         >
             <div style={{ fontSize: '14px', lineHeight: 1.5, marginBottom: '14px', color: 'var(--text-secondary)' }}>
-                We use cookies to improve your experience and understand how our site is used.
-                See our{' '}
+                {t.cookies.text}{' '}
+                {t.cookies.seeOur}{' '}
                 <a href={localeHref("/privacy")} style={{ color: 'var(--accent-gold)', textDecoration: 'underline' }}>
-                    Privacy Policy
+                    {t.cookies.privacyLink}
                 </a>
                 .
             </div>
@@ -68,14 +68,14 @@ const CookieConsent = () => {
                     className="btn btn-primary"
                     style={{ flex: 1, padding: '10px 16px', fontSize: '12px' }}
                 >
-                    Accept
+                    {t.cookies.accept}
                 </button>
                 <button
                     onClick={() => setConsent("declined")}
                     className="btn btn-secondary"
                     style={{ flex: 1, padding: '10px 16px', fontSize: '12px' }}
                 >
-                    Decline
+                    {t.cookies.decline}
                 </button>
             </div>
         </div>

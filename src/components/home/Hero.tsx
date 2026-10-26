@@ -81,7 +81,7 @@ const Hero = () => {
                     color: 'var(--text-muted)',
                     fontWeight: 600,
                 }}>
-                    Est. Dubai · Luxury Mobility
+                    {t.hero.verticalLabel}
                 </span>
                 <span style={{ width: '1px', height: '96px', background: 'rgba(197, 160, 33, 0.4)' }} />
             </div>

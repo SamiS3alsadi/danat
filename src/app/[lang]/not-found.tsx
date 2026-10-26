@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function NotFound() {
-    const { localeHref } = useLanguage();
+    const { t, localeHref } = useLanguage();
     return (
         <div style={{
             minHeight: '80vh',
@@ -25,7 +25,7 @@ export default function NotFound() {
                     display: 'block',
                     marginBottom: '24px',
                 }}>
-                    Error 404
+                    {t.notFoundPage.eyebrow}
                 </span>
                 <h1 style={{
                     fontSize: 'clamp(3rem, 8vw, 5rem)',
@@ -34,7 +34,7 @@ export default function NotFound() {
                     lineHeight: 1,
                     marginBottom: '24px',
                 }}>
-                    Page Not <span style={{ color: 'var(--accent-gold)' }}>Found</span>
+                    {t.notFoundPage.title} <span style={{ color: 'var(--accent-gold)' }}>{t.notFoundPage.titleHighlight}</span>
                 </h1>
                 <p style={{
                     color: 'var(--text-secondary)',
@@ -42,13 +42,13 @@ export default function NotFound() {
                     lineHeight: 1.6,
                     marginBottom: '40px',
                 }}>
-                    The car or page you&apos;re looking for has left the garage. Let&apos;s get you back on the road.
+                    {t.notFoundPage.desc}
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
-                    <Link href={localeHref("/")} className="btn btn-primary">Back to Home</Link>
-                    <Link href={localeHref("/fleet")} className="btn btn-secondary">Browse Fleet</Link>
+                    <Link href={localeHref("/")} className="btn btn-primary">{t.notFoundPage.home}</Link>
+                    <Link href={localeHref("/fleet")} className="btn btn-secondary">{t.notFoundPage.browseFleet}</Link>
                     <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-                        Chat on WhatsApp
+                        {t.notFoundPage.whatsapp}
                     </a>
                 </div>
             </div>

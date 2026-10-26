@@ -12,7 +12,7 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
-    const { localeHref } = useLanguage();
+    const { t, localeHref } = useLanguage();
     useEffect(() => {
         console.error(error);
     }, [error]);
@@ -36,7 +36,7 @@ export default function Error({
                     display: 'block',
                     marginBottom: '24px',
                 }}>
-                    Something Went Wrong
+                    {t.errorPage.eyebrow}
                 </span>
                 <h1 style={{
                     fontSize: 'clamp(2rem, 6vw, 3.5rem)',
@@ -45,16 +45,16 @@ export default function Error({
                     lineHeight: 1.1,
                     marginBottom: '24px',
                 }}>
-                    We hit a <span style={{ color: 'var(--accent-gold)' }}>roadblock</span>
+                    {t.errorPage.title} <span style={{ color: 'var(--accent-gold)' }}>{t.errorPage.titleHighlight}</span>
                 </h1>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: 1.6, marginBottom: '40px' }}>
-                    An unexpected error occurred. Our team has been notified. You can try again, or contact us directly.
+                    {t.errorPage.desc}
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
-                    <button onClick={reset} className="btn btn-primary">Try Again</button>
-                    <Link href={localeHref("/")} className="btn btn-secondary">Back to Home</Link>
+                    <button onClick={reset} className="btn btn-primary">{t.errorPage.retry}</button>
+                    <Link href={localeHref("/")} className="btn btn-secondary">{t.errorPage.home}</Link>
                     <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-                        Chat on WhatsApp
+                        {t.errorPage.whatsapp}
                     </a>
                 </div>
             </div>

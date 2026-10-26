@@ -57,7 +57,7 @@ const FeaturedFleet = () => {
                         <div className="hidden md:flex" style={{ gap: '10px' }}>
                             <button
                                 type="button"
-                                aria-label="Scroll previous"
+                                aria-label={t.a11y.scrollPrev}
                                 className="scroller-chevron"
                                 onClick={() => scrollByCard(isRTL ? 1 : -1)}
                             >
@@ -65,7 +65,7 @@ const FeaturedFleet = () => {
                             </button>
                             <button
                                 type="button"
-                                aria-label="Scroll next"
+                                aria-label={t.a11y.scrollNext}
                                 className="scroller-chevron"
                                 onClick={() => scrollByCard(isRTL ? -1 : 1)}
                             >

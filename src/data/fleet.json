@@ -19,14 +19,23 @@
       "seats": 2,
       "transmission": "Automatic",
       "fuel": "Petrol",
-      "luggage": "1 Small"
+      "luggage": {
+        "en": "1 Small",
+        "ar": "حقيبة صغيرة"
+      }
     },
-    "description": "The Lamborghini Huracan EVO Spyder is the pinnacle of open-top performance. With its roaring V10 engine and cutting-edge aerodynamics, it offers an adrenaline-fueled driving experience like no other in Dubai.",
+    "description": {
+      "en": "The Lamborghini Huracan EVO Spyder is the pinnacle of open-top performance. With its roaring V10 engine and cutting-edge aerodynamics, it offers an adrenaline-fueled driving experience like no other in Dubai.",
+      "ar": "لامبورغيني هوراكان إيفو سبايدر هي قمة الأداء المكشوف. بمحرك V10 الهادر وديناميكية هوائية متقدمة، تقدّم تجربة قيادة مليئة بالإثارة لا تشبه غيرها في دبي."
+    },
     "isFeatured": true,
     "isBestDeal": false,
     "depositRequired": true,
     "deliveryAvailable": true,
-    "metaDescription": "Rent the Lamborghini Huracan EVO Spyder in Dubai with insurance included in the price and delivery anywhere in the city.",
+    "metaDescription": {
+      "en": "Rent the Lamborghini Huracan EVO Spyder in Dubai with insurance included in the price and delivery anywhere in the city.",
+      "ar": "استأجر لامبورغيني هوراكان إيفو سبايدر في دبي مع تأمين شامل في السعر وتوصيل إلى أي مكان في المدينة."
+    },
     "shortName": "Huracan EVO"
   },
   {
@@ -49,14 +58,23 @@
       "seats": 5,
       "transmission": "Automatic",
       "fuel": "Petrol",
-      "luggage": "3 Large"
+      "luggage": {
+        "en": "3 Large",
+        "ar": "3 حقائب كبيرة"
+      }
     },
-    "description": "Experience the ultimate in luxury and presence with the Rolls Royce Cullinan. The first SUV from the legendary marque, it offers unparalleled comfort and status for your Dubai journey.",
+    "description": {
+      "en": "Experience the ultimate in luxury and presence with the Rolls Royce Cullinan. The first SUV from the legendary marque, it offers unparalleled comfort and status for your Dubai journey.",
+      "ar": "اختبر قمة الفخامة والحضور مع رولز رويس كولينان. أول سيارة دفع رباعي من العلامة الأسطورية، تمنحك راحة ومكانة لا تُضاهى في رحلتك بدبي."
+    },
     "isFeatured": true,
     "isBestDeal": true,
     "depositRequired": true,
     "deliveryAvailable": true,
-    "metaDescription": "Rent the Rolls-Royce Cullinan in Dubai and have it delivered to your hotel, office or home within 60 minutes."
+    "metaDescription": {
+      "en": "Rent the Rolls-Royce Cullinan in Dubai and have it delivered to your hotel, office or home within 60 minutes.",
+      "ar": "استأجر رولز رويس كولينان في دبي مع توصيل إلى فندقك أو مكتبك أو منزلك خلال 60 دقيقة."
+    }
   },
   {
     "id": "3",
@@ -78,14 +96,23 @@
       "seats": 5,
       "transmission": "Automatic",
       "fuel": "Petrol",
-      "luggage": "3 Large"
+      "luggage": {
+        "en": "3 Large",
+        "ar": "3 حقائب كبيرة"
+      }
     },
-    "description": "The Range Rover Sport blends commanding off-road capability with refined luxury. Its striking silhouette, sumptuous interior, and dynamic performance make it the ultimate choice for Dubai's roads and beyond.",
+    "description": {
+      "en": "The Range Rover Sport blends commanding off-road capability with refined luxury. Its striking silhouette, sumptuous interior, and dynamic performance make it the ultimate choice for Dubai's roads and beyond.",
+      "ar": "تجمع رينج روفر سبورت بين قدرات الطرق الوعرة والفخامة الراقية. تصميمها اللافت ومقصورتها الفارهة وأدائها الديناميكي يجعلها الخيار الأمثل لطرق دبي وما بعدها."
+    },
     "isFeatured": true,
     "isBestDeal": false,
     "depositRequired": true,
     "deliveryAvailable": true,
-    "metaDescription": "Rent the Range Rover Sport in Dubai with comprehensive insurance included at no extra cost."
+    "metaDescription": {
+      "en": "Rent the Range Rover Sport in Dubai with comprehensive insurance included at no extra cost.",
+      "ar": "استأجر رينج روفر سبورت في دبي مع تأمين شامل مضمَّن دون تكلفة إضافية."
+    }
   },
   {
     "id": "4",
@@ -107,14 +134,23 @@
       "seats": 5,
       "transmission": "Automatic",
       "fuel": "Petrol",
-      "luggage": "3 Large"
+      "luggage": {
+        "en": "3 Large",
+        "ar": "3 حقائب كبيرة"
+      }
     },
-    "description": "The Mercedes-Benz S500 defines the pinnacle of automotive luxury. With its executive cabin, cutting-edge technology, and silky-smooth performance, it is the benchmark for prestige motoring in Dubai.",
+    "description": {
+      "en": "The Mercedes-Benz S500 defines the pinnacle of automotive luxury. With its executive cabin, cutting-edge technology, and silky-smooth performance, it is the benchmark for prestige motoring in Dubai.",
+      "ar": "تُجسّد مرسيدس-بنز S500 قمة الفخامة في عالم السيارات. بمقصورتها التنفيذية وتقنياتها المتقدمة وأدائها السلس، هي المعيار الذهبي للقيادة الراقية في دبي."
+    },
     "isFeatured": true,
     "isBestDeal": false,
     "depositRequired": true,
     "deliveryAvailable": true,
-    "metaDescription": "Rent the Mercedes-Benz S500 in Dubai with delivery to your hotel, office or home across the city within 60 minutes."
+    "metaDescription": {
+      "en": "Rent the Mercedes-Benz S500 in Dubai with delivery to your hotel, office or home across the city within 60 minutes.",
+      "ar": "استأجر مرسيدس-بنز S500 في دبي مع توصيل إلى فندقك أو مكتبك أو منزلك في أنحاء المدينة خلال 60 دقيقة."
+    }
   },
   {
     "id": "5",
@@ -136,13 +172,22 @@
       "seats": 2,
       "transmission": "Automatic",
       "fuel": "Petrol",
-      "luggage": "1 Small"
+      "luggage": {
+        "en": "1 Small",
+        "ar": "حقيبة صغيرة"
+      }
     },
-    "description": "The Porsche 911 GT3 is a track-bred legend tamed for the streets of Dubai. Its naturally aspirated flat-six screams to 9,000 rpm, delivering a raw, visceral driving experience matched by razor-sharp aerodynamics and precision handling.",
+    "description": {
+      "en": "The Porsche 911 GT3 is a track-bred legend tamed for the streets of Dubai. Its naturally aspirated flat-six screams to 9,000 rpm, delivering a raw, visceral driving experience matched by razor-sharp aerodynamics and precision handling.",
+      "ar": "بورشه 911 GT3 أسطورة وُلدت على الحلبة ورُوّضت لشوارع دبي. محركها سداسي الأسطوانات المسطح يصل إلى 9,000 دورة في الدقيقة، ليمنح تجربة قيادة نقية وحيوية تدعمها ديناميكية هوائية فائقة الدقة وتحكّم استثنائي."
+    },
     "isFeatured": true,
     "isBestDeal": false,
     "depositRequired": true,
     "deliveryAvailable": true,
-    "metaDescription": "Rent the Porsche 911 GT3 in Dubai with no hidden fees — the price you see is the price you pay."
+    "metaDescription": {
+      "en": "Rent the Porsche 911 GT3 in Dubai with no hidden fees — the price you see is the price you pay.",
+      "ar": "استأجر بورشه 911 GT3 في دبي بدون رسوم خفية — السعر الذي تراه هو السعر الذي تدفعه."
+    }
   }
 ]

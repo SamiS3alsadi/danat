@@ -1,8 +1,13 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export default function Loading() {
+    const { t } = useLanguage();
     return (
         <div
             role="status"
-            aria-label="Loading"
+            aria-label={t.a11y.loading}
             style={{
                 minHeight: '80vh',
                 display: 'flex',
