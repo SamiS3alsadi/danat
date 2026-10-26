@@ -47,7 +47,7 @@ export default function NotFound() {
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
                     <Link href={localeHref("/")} className="btn btn-primary">{t.notFoundPage.home}</Link>
                     <Link href={localeHref("/fleet")} className="btn btn-secondary">{t.notFoundPage.browseFleet}</Link>
-                    <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <a href={siteConfig.whatsappMessage(t.whatsapp.trouble)} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                         {t.notFoundPage.whatsapp}
                     </a>
                 </div>

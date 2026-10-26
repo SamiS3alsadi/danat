@@ -19,7 +19,7 @@ const StickyMobileBar = () => {
                     {t.sticky.callNow}
                 </a>
                 <a
-                    href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")}
+                    href={siteConfig.whatsappMessage(t.whatsapp.general)}
                     style={{ flex: 1, backgroundColor: '#25D366', color: '#fff', fontWeight: 900, padding: '16px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 10px 25px rgba(37, 211, 102, 0.4)', textDecoration: 'none', minHeight: '52px' }}
                 >
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -43,7 +43,7 @@ export default async function FAQPage({ params }: { params: Promise<{ lang: stri
                     <div className="bg-surface-primary border border-white/5 rounded-3xl p-12 text-center" style={{ backgroundColor: 'var(--surface-primary)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '24px', padding: '48px', textAlign: 'center' }}>
                         <h2 className="text-2xl font-black text-white mb-6" style={{ fontSize: '24px', fontWeight: 900, color: '#fff' }}>{t.faqPage.stillQuestions}</h2>
                         <p className="text-secondary mb-10" style={{ color: 'var(--text-secondary)', marginBottom: '40px' }}>{t.faqPage.stillQuestionsDesc}</p>
-                        <a href={siteConfig.whatsappMessage("Hi, I have a question about renting a car.")} className="btn btn-primary">{t.faqPage.messageWhatsApp}</a>
+                        <a href={siteConfig.whatsappMessage(t.whatsapp.question)} className="btn btn-primary">{t.faqPage.messageWhatsApp}</a>
                     </div>
                 </section>
             </div>

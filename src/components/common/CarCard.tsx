@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Car } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { fill, formatPrice } from "@/i18n/format";
 import { siteConfig } from "@/config/site";
 
 interface CarCardProps {
@@ -48,14 +49,14 @@ const CarCard = ({ car }: CarCardProps) => {
                     onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-car.webp'; }}
                 />
                 {car.isBestDeal && (
-                    <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>
+                    <div style={{ position: 'absolute', top: '16px', insetInlineStart: '16px', zIndex: 10 }}>
                         <span style={{ backgroundColor: 'var(--accent-gold)', color: '#050505', fontSize: '9px', fontWeight: 900, padding: '4px 10px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
                             {t.fleet.bestDeal}
                         </span>
                     </div>
                 )}
                 {car.segment && (
-                    <div style={{ position: 'absolute', top: '16px', right: '16px', zIndex: 10 }}>
+                    <div style={{ position: 'absolute', top: '16px', insetInlineEnd: '16px', zIndex: 10 }}>
                         <span style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#fff', fontSize: '9px', fontWeight: 900, padding: '4px 10px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.15em', backdropFilter: 'blur(8px)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                             {car.segment}
                         </span>
@@ -71,9 +72,9 @@ const CarCard = ({ car }: CarCardProps) => {
                         </span>
                         <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff' }}>{car.name}</h3>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
+                    <div style={{ textAlign: 'end' }}>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>{t.fleet.startingAt}</span>
-                        <span style={{ color: 'var(--accent-gold)', fontWeight: 900, fontSize: '18px' }}>AED {car.pricePerDay.toLocaleString()}</span>
+                        <span style={{ color: 'var(--accent-gold)', fontWeight: 900, fontSize: '18px' }}>{formatPrice(car.pricePerDay, locale)}</span>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block' }}>{t.fleet.perDay}</span>
                     </div>
                 </div>
@@ -101,7 +102,7 @@ const CarCard = ({ car }: CarCardProps) => {
                     <Link href={localeHref(`/fleet/${car.slug}`)} className="btn btn-secondary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
                         {t.fleet.view}
                     </Link>
-                    <a href={siteConfig.whatsappMessage(`Hi, I want to rent ${car.brand} ${car.name}.`)} className="btn btn-primary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
+                    <a href={siteConfig.whatsappMessage(fill(t.whatsapp.carInterest, { car: `${car.brand} ${car.name}` }))} className="btn btn-primary flex-1" style={{ flex: 1, padding: '12px', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
                         {t.fleet.whatsapp}
                     </a>
                 </div>

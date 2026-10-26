@@ -208,7 +208,7 @@ const FleetClient = () => {
                         </span>
                         <h2 style={{ fontSize: '24px', fontWeight: 900, color: '#fff', marginBottom: '24px' }}>{t.fleetPage.savingsTitle}</h2>
                         <p style={{ color: 'var(--text-secondary)', maxWidth: '576px', margin: '0 auto 32px' }}>{t.fleetPage.savingsDesc}</p>
-                        <a href={siteConfig.whatsappMessage("Hi, I'm interested in monthly rental deals.")} className="btn btn-primary">
+                        <a href={siteConfig.whatsappMessage(t.whatsapp.monthly)} className="btn btn-primary">
                             {t.fleetPage.inquireMonthly}
                         </a>
                     </div>

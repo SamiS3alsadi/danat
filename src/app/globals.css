@@ -295,30 +295,39 @@ button, input, select, textarea {
   position: relative;
 }
 
-/* Right fade — always visible, hints at more cards */
+/* End-edge fade — always visible, hints at more cards */
 .fleet-scroller-wrap::after {
   content: "";
   position: absolute;
   top: 8px;
   bottom: 32px;
-  right: 0;
+  inset-inline-end: 0;
   width: 80px;
   pointer-events: none;
   z-index: 2;
+  /* Gradients have no logical direction, so RTL flips these two below. */
   background: linear-gradient(to left, #000 15%, transparent);
 }
 
-/* Left fade — only shown when user has scrolled right */
+/* Start-edge fade — only shown once the rail has been scrolled */
 .fleet-scroller-wrap.can-scroll-left::before {
   content: "";
   position: absolute;
   top: 8px;
   bottom: 32px;
-  left: 0;
+  inset-inline-start: 0;
   width: 80px;
   pointer-events: none;
   z-index: 2;
   background: linear-gradient(to right, #000 15%, transparent);
+}
+
+[dir="rtl"] .fleet-scroller-wrap::after {
+  background: linear-gradient(to right, #000 15%, transparent);
+}
+
+[dir="rtl"] .fleet-scroller-wrap.can-scroll-left::before {
+  background: linear-gradient(to left, #000 15%, transparent);
 }
 
 .scroller-chevron {

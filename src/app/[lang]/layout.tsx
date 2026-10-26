@@ -73,13 +73,13 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             href="#main-content"
             style={{
               position: 'absolute',
-              left: '-9999px',
+              insetInlineStart: '-9999px',
               top: 'auto',
               width: '1px',
               height: '1px',
               overflow: 'hidden',
             }}
-            className="focus:left-0 focus:w-auto focus:h-auto focus:p-4 focus:z-[9999] focus:bg-black focus:text-white"
+            className="focus:start-0 focus:w-auto focus:h-auto focus:p-4 focus:z-[9999] focus:bg-black focus:text-white"
           >
             {skipLabel}
           </a>

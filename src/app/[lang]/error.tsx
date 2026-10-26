@@ -53,7 +53,7 @@ export default function Error({
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
                     <button onClick={reset} className="btn btn-primary">{t.errorPage.retry}</button>
                     <Link href={localeHref("/")} className="btn btn-secondary">{t.errorPage.home}</Link>
-                    <a href={siteConfig.whatsappMessage("Hi, I had trouble on your website. Can you help me book a car?")} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <a href={siteConfig.whatsappMessage(t.whatsapp.trouble)} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                         {t.errorPage.whatsapp}
                     </a>
                 </div>

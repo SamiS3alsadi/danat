@@ -33,7 +33,7 @@ const FAQAccordion = () => {
                                 aria-expanded={isOpen}
                                 aria-controls={panelId}
                                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                                style={{ width: '100%', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' as const }}
+                                style={{ width: '100%', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'start' as const }}
                             >
                                 <span style={{ fontSize: '17px', fontWeight: 700, color: isOpen ? 'var(--accent-gold)' : '#fff', transition: 'color 0.3s ease', flex: 1, paddingRight: '16px' }}>
                                     {faq.q}

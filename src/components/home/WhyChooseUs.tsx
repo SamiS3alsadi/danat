@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
                                 style={{ objectFit: 'cover' }}
                             />
                             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.8) 0%, transparent 60%)', zIndex: 1 }}></div>
-                            <div style={{ position: 'absolute', bottom: '24px', left: '24px', zIndex: 2 }}>
+                            <div style={{ position: 'absolute', bottom: '24px', insetInlineStart: '24px', zIndex: 2 }}>
                                 <span style={{ color: 'var(--accent-gold)', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.1em', display: 'block', marginBottom: '8px' }}>{t.why.trustedLabel}</span>
                                 <h4 style={{ fontSize: '22px', fontWeight: 900, color: '#fff', textTransform: 'uppercase' as const, letterSpacing: '-0.02em' }}>{t.why.trustedTitle}</h4>
                             </div>

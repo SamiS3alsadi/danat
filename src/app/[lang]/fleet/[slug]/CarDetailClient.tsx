@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import fleetData from "@/data/fleet.json";
 import { Car } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { fill, formatPrice } from "@/i18n/format";
 import { siteConfig } from "@/config/site";
 
 const CarDetailClient = ({ slug }: { slug: string }) => {
@@ -37,9 +38,17 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
         totalPrice = days * effectiveRate;
     }
 
-    const datesText = startDate && endDate ? ` Dates: ${startDate} to ${endDate} (${days} days).` : "";
-    const priceText = totalPrice > 0 ? ` Estimated total: AED ${totalPrice.toLocaleString()}.` : "";
-    const whatsappMessage = `Hi, I want to rent the ${car.brand} ${car.name}.${datesText}${priceText} Can you confirm availability?`;
+    const datesText =
+        startDate && endDate
+            ? fill(t.whatsapp.carDates, { start: startDate, end: endDate, days })
+            : "";
+    const priceText =
+        totalPrice > 0 ? fill(t.whatsapp.carTotal, { total: formatPrice(totalPrice, locale) }) : "";
+    const whatsappMessage =
+        fill(t.whatsapp.carConfirm, { car: `${car.brand} ${car.name}` }) +
+        datesText +
+        priceText +
+        t.whatsapp.carAvailability;
     const whatsappUrl = siteConfig.whatsappMessage(whatsappMessage);
 
     return (
@@ -91,7 +100,7 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                 </span>
                                 <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#fff', marginBottom: '24px' }}>{car.name}</h1>
                                 <div style={{ display: 'flex', alignItems: 'flex-end', gap: '12px', marginBottom: '32px' }}>
-                                    <span style={{ fontSize: '36px', fontWeight: 900, color: 'var(--accent-gold)' }}>AED {car.pricePerDay.toLocaleString()}</span>
+                                    <span style={{ fontSize: '36px', fontWeight: 900, color: 'var(--accent-gold)' }}>{formatPrice(car.pricePerDay, locale)}</span>
                                     <span style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '6px' }}>{t.carDetail.perDay}</span>
                                 </div>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '18px', lineHeight: 1.6, marginBottom: '32px' }}>{car.description[locale]}</p>
@@ -127,14 +136,14 @@ const CarDetailClient = ({ slug }: { slug: string }) => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                                         <div>
                                             <span style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block' }}>
-                                                {days} {days === 1 ? t.carDetail.day : t.carDetail.days} × AED {effectiveRate.toLocaleString()}
+                                                {days} {days === 1 ? t.carDetail.day : t.carDetail.days} × {formatPrice(effectiveRate, locale)}
                                                 {days >= 30 && t.carDetail.monthlyRate}
                                                 {days >= 7 && days < 30 && t.carDetail.weeklyRate}
                                             </span>
                                             <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.carDetail.estimatedTotal}</span>
                                         </div>
                                         <span style={{ fontSize: '22px', fontWeight: 900, color: 'var(--accent-gold)' }}>
-                                            AED {totalPrice.toLocaleString()}
+                                            {formatPrice(totalPrice, locale)}
                                         </span>
                                     </div>
                                 )}

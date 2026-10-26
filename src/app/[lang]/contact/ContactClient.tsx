@@ -39,7 +39,7 @@ export default function ContactClient() {
                                         {t.contact.phoneLabel}
                                     </h3>
                                     <a href={siteConfig.tel} style={{ fontSize: '18px', fontWeight: 700, color: '#fff', display: 'block', textDecoration: 'none' }}>{siteConfig.phoneDisplay}</a>
-                                    <a href={siteConfig.whatsappMessage("Hi, I'd like to rent a car in Dubai. Can you share availability and prices?")} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                                    <a href={siteConfig.whatsappMessage(t.whatsapp.general)} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
                                         {t.contact.chatWhatsApp}
                                     </a>
                                 </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { formatPrice } from "@/i18n/format";
 
 const packageIcons = [
     // Daily
@@ -19,10 +20,10 @@ const packageIcons = [
     </svg>,
 ];
 
-const categoryPrices = ["AED 90", "AED 180", "AED 250", "AED 350", "AED 800", "AED 2500"];
+const categoryPrices = [90, 180, 250, 350, 800, 2500];
 
 export default function PricingClient() {
-    const { t, localeHref } = useLanguage();
+    const { t, localeHref, locale } = useLanguage();
 
     return (
         <div className="bg-black min-h-screen py-24">
@@ -69,9 +70,9 @@ export default function PricingClient() {
                                     <h4 style={{ color: '#fff', fontWeight: 900, textTransform: 'uppercase' as const, fontSize: '14px', marginBottom: '4px' }}>{cat.name}</h4>
                                     <p style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.1em' }}>{cat.cars}</p>
                                 </div>
-                                <div style={{ textAlign: 'right' }}>
+                                <div style={{ textAlign: 'end' }}>
                                     <span style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block' }}>{t.pricing.startsAt}</span>
-                                    <span style={{ color: 'var(--accent-gold)', fontWeight: 900, fontSize: '20px' }}>{categoryPrices[i]}</span>
+                                    <span style={{ color: 'var(--accent-gold)', fontWeight: 900, fontSize: '20px' }}>{formatPrice(categoryPrices[i], locale)}</span>
                                 </div>
                             </div>
                         ))}
@@ -118,7 +119,7 @@ export default function PricingClient() {
                             <h3 style={{ fontSize: '24px', fontWeight: 900, color: 'var(--accent-gold)' }}>{t.pricing.zeroFeesTitle}</h3>
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{t.pricing.zeroFeesDesc}</p>
                             <div style={{ paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                <a href={siteConfig.whatsappMessage("Hi, I'd like a price quote for a car rental in Dubai.")} className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
+                                <a href={siteConfig.whatsappMessage(t.whatsapp.priceQuote)} className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
                                     {t.pricing.inquireCta}
                                 </a>
                             </div>
