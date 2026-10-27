@@ -1,6 +1,13 @@
 "use client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+/**
+ * Disabled: the testimonials in t.reviews.items are placeholder copy with
+ * invented names, and every card used to carry a hardcoded five-star rating.
+ * Both were unverifiable claims. Re-mount this in app/[lang]/page.tsx once
+ * there are real, attributable reviews — and render the real rating, not a
+ * fixed five stars.
+ */
 const Reviews = () => {
     const { t } = useLanguage();
 
@@ -19,11 +26,6 @@ const Reviews = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
                     {t.reviews.items.map((review, index) => (
                         <div key={index} className="card" style={{ padding: '32px', backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                            <div style={{ display: 'flex', gap: '4px', marginBottom: '24px' }}>
-                                {[...Array(5)].map((_, i) => (
-                                    <span key={i} style={{ color: 'var(--accent-gold)', fontSize: '18px' }}>★</span>
-                                ))}
-                            </div>
                             <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: '24px', lineHeight: 1.6 }}>
                                 &ldquo;{review.text}&rdquo;
                             </p>
